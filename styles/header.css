@@ -15,8 +15,8 @@
 }
 
 .brand img {
-  width: 280px;
-  height: 86px;
+  width: 190px;
+  height: 58px;
   object-fit: contain;
   object-position: center;
 }
@@ -25,9 +25,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 308px;
-  min-height: 102px;
-  padding: 6px 10px;
+  min-width: 218px;
+  min-height: 72px;
+  padding: 4px 9px;
   border: 1px solid rgba(201, 162, 78, 0.35);
   border-radius: 0;
   background: #ffffff;
@@ -35,8 +35,8 @@
 }
 
 .footer-brand img {
-  width: 250px;
-  height: 78px;
+  width: 190px;
+  height: 58px;
 }
 
 .main-nav {
