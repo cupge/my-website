@@ -18,6 +18,12 @@
   font-weight: 900;
 }
 
+.social-link img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .social-link:hover {
   color: var(--gold-soft);
   border-color: rgba(201, 162, 78, 0.7);
