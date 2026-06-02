@@ -40,6 +40,10 @@ async function initApp() {
   });
 
   document.querySelector("[data-cart-clear]")?.addEventListener("click", clearCart);
+  document.querySelector("[data-cart-request]")?.addEventListener("click", () => {
+    document.querySelector("[data-cart-drawer]")?.classList.remove("open");
+    document.querySelector("#contacts")?.scrollIntoView({ behavior: "smooth" });
+  });
   document.querySelector("[data-youtube-open]")?.addEventListener("click", openYoutubeChannel);
 
   document.querySelector("[data-order-form]")?.addEventListener("submit", async (event) => {
