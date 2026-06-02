@@ -1,0 +1,145 @@
+.catalog-section {
+  width: min(1260px, calc(100% - 40px));
+}
+
+.catalog-heading {
+  padding: 22px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.45);
+  border: 1px solid var(--line);
+}
+
+.catalog-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-tabs button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.catalog-tabs button.active {
+  background: var(--gold);
+  color: #111;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.product-card {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  min-height: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(43, 49, 53, 0.96), rgba(29, 33, 36, 0.98));
+  border: 1px solid rgba(245, 245, 245, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+}
+
+.product-visual {
+  height: 112px;
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.82), transparent 26%),
+    linear-gradient(165deg, var(--cup-color), var(--cup-color-dark));
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.product-visual::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 10px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.78);
+  background: rgba(17, 24, 39, 0.35);
+}
+
+.product-visual::after {
+  content: "CG";
+  position: absolute;
+  inset: 43px 12px auto;
+  color: var(--cup-logo, #111);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.product-content h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.product-volume {
+  color: var(--gold-soft);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.spec-list {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.spec-list div {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 8px;
+}
+
+.spec-list dt {
+  color: rgba(245, 245, 245, 0.58);
+}
+
+.spec-list dd {
+  margin: 0;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.product-card .button {
+  width: 100%;
+  min-height: 38px;
+  font-size: 13px;
+}
+
+.packaging-panel {
+  margin-top: 22px;
+  padding: 20px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.42);
+  border: 1px solid var(--line);
+}
+
+.packaging-panel summary {
+  color: var(--gold-soft);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.packaging-panel p {
+  color: var(--muted);
+}

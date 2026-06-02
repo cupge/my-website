@@ -1,0 +1,66 @@
+.production-section {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 30px;
+  align-items: stretch;
+}
+
+.production-copy {
+  padding: 30px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.48);
+  border: 1px solid var(--line);
+}
+
+.production-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 5vw, 54px);
+  line-height: 1;
+}
+
+.production-copy p,
+.check-list {
+  color: var(--muted);
+}
+
+.check-list {
+  padding-left: 20px;
+  margin: 22px 0;
+}
+
+.check-list li::marker {
+  color: var(--gold);
+}
+
+.video-preview {
+  min-height: 420px;
+  display: grid;
+  place-content: center;
+  gap: 18px;
+  text-align: center;
+  border-radius: 8px;
+  background:
+    linear-gradient(0deg, rgba(17, 24, 39, 0.62), rgba(17, 24, 39, 0.18)),
+    url("../assets/images/production/factory-process.png") center / cover;
+  border: 1px solid rgba(201, 162, 78, 0.22);
+  box-shadow: var(--shadow);
+}
+
+.play-button {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--gold);
+  position: relative;
+}
+
+.play-button::after {
+  content: "";
+  position: absolute;
+  left: 31px;
+  top: 23px;
+  border-left: 22px solid #111;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+}

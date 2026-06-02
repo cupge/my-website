@@ -1,0 +1,24 @@
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.social-link {
+  min-width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.social-link:hover {
+  color: var(--gold-soft);
+  border-color: rgba(201, 162, 78, 0.7);
+}

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CupGe manufactures premium paper cups and packaging for B2B partners.">
+    <title>CupGe | Premium Paper Packaging</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/catalog.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="styles/production.css">
+    <link rel="stylesheet" href="styles/contacts.css">
+    <link rel="stylesheet" href="styles/social.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="CupGe home">
+        <img src="assets/images/logo/cupge-logo.png" alt="CupGe logo">
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#catalog" data-i18n="nav.catalog">Catalog</a>
+        <a href="#production" data-i18n="nav.production">Production</a>
+        <a href="#contacts" data-i18n="nav.contacts">Contacts</a>
+      </nav>
+      <div class="header-actions">
+        <div class="social-list" data-social-target="header"></div>
+        <div class="language-switcher" aria-label="Language selector">
+          <button type="button" class="active" data-lang="ka">KA</button>
+          <button type="button" data-lang="ru">RU</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button class="cart-toggle" type="button" data-cart-open><span data-i18n="nav.quote">Quote</span> <span data-cart-count>0</span></button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Premium paper packaging</p>
+          <h1>CupGe</h1>
+          <p class="hero-lead" data-i18n="hero.lead">Manufacturer of paper cups and packaging for cafes, distributors, private labels and food service companies.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#catalog" data-i18n="hero.catalog">View Catalog</a>
+            <a class="button button-secondary" href="#contacts" data-i18n="hero.contact">Contact Us</a>
+          </div>
+          <dl class="hero-stats">
+            <div><dt>150-250 ml</dt><dd data-i18n="hero.statRange">core cup range</dd></div>
+            <div><dt>B2B</dt><dd data-i18n="hero.statB2b">quotation workflow</dd></div>
+            <div><dt>PE coating</dt><dd data-i18n="hero.statCoating">industrial specs</dd></div>
+          </dl>
+        </div>
+        <div class="hero-media" aria-label="CupGe manufacturing preview"></div>
+      </section>
+
+      <section class="section about-section" id="about">
+        <div class="section-heading">
+          <p class="eyebrow" data-i18n="about.eyebrow">Manufacturing profile</p>
+          <h2 data-i18n="about.title">Paper cups and packaging with clear industrial specifications.</h2>
+        </div>
+        <div class="about-grid">
+          <article>
+            <h3 data-i18n="about.productionTitle">Production</h3>
+            <p data-i18n="about.productionText">Repeatable paper cup manufacturing, packaging preparation and carton-ready B2B supply.</p>
+          </article>
+          <article>
+            <h3 data-i18n="about.qualityTitle">Quality Control</h3>
+            <p data-i18n="about.qualityText">Cards expose volume, dimensions, density, coating, carton quantity and logistics data.</p>
+          </article>
+          <article>
+            <h3 data-i18n="about.partnersTitle">Partnerships</h3>
+            <p data-i18n="about.partnersText">Built for quotation requests, distributor inquiries and future account-based availability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section catalog-section" id="catalog">
+        <div class="section-heading catalog-heading">
+          <div>
+            <p class="eyebrow" data-i18n="catalog.eyebrow">Industrial catalog</p>
+            <h2 data-i18n="catalog.title">Paper Cups</h2>
+          </div>
+          <div class="catalog-tabs" role="tablist" aria-label="Catalog filters">
+            <button type="button" class="active" data-filter="all" data-i18n="catalog.all">All</button>
+            <button type="button" data-filter="white" data-i18n="catalog.white">White</button>
+            <button type="button" data-filter="kraft" data-i18n="catalog.kraft">Kraft</button>
+            <button type="button" data-filter="black" data-i18n="catalog.black">Black</button>
+            <button type="button" data-filter="colored" data-i18n="catalog.colored">Colored</button>
+          </div>
+        </div>
+        <div class="product-grid" data-products></div>
+        <details class="packaging-panel">
+          <summary data-i18n="catalog.packagingTitle">Packaging products</summary>
+          <p data-i18n="catalog.packagingText">Expandable category reserved for cartons, sleeves, lids and custom branded packaging.</p>
+        </details>
+      </section>
+
+      <section class="section production-section" id="production">
+        <div class="production-copy">
+          <p class="eyebrow" data-i18n="production.eyebrow">CupGe Production</p>
+          <h2 data-i18n="production.title">How We Manufacture</h2>
+          <p data-i18n="production.text">Factory visuals, process notes and video previews help buyers verify that CupGe is a real manufacturing partner.</p>
+          <ul class="check-list">
+            <li data-i18n="production.item1">Paper cup forming and packing process</li>
+            <li data-i18n="production.item2">Quality control before carton shipment</li>
+            <li data-i18n="production.item3">Future YouTube channel integration</li>
+          </ul>
+          <button class="button button-primary" type="button" data-youtube-open data-i18n="production.youtube">Open YouTube Channel</button>
+        </div>
+        <div class="video-preview" data-youtube-preview>
+          <span class="play-button" aria-hidden="true"></span>
+          <strong data-i18n="production.preview">Production video preview</strong>
+        </div>
+      </section>
+
+      <section class="section contacts-section" id="contacts">
+        <div class="contact-info">
+          <p class="eyebrow" data-i18n="contacts.eyebrow">Contacts</p>
+          <h2 data-i18n="contacts.title">Request a quotation</h2>
+          <p data-i18n="contacts.text">Send a product list and message. Phase one logs the request locally; phase two connects to Google Sheets.</p>
+          <div class="contact-lines">
+            <a href="tel:+995000000000">+995 000 000 000</a>
+            <a href="mailto:info@cup.ge">info@cup.ge</a>
+            <span>Tbilisi, Georgia</span>
+            <a href="https://wa.me/995000000000">WhatsApp</a>
+            <a href="https://t.me/cupge">Telegram</a>
+          </div>
+          <div class="map-placeholder" data-i18n="contacts.map">Google Map integration placeholder</div>
+          <div class="social-list" data-social-target="contacts"></div>
+        </div>
+        <form class="request-form" data-order-form>
+          <label><span data-i18n="form.name">Name</span> <input name="name" required autocomplete="name"></label>
+          <label><span data-i18n="form.phone">Phone</span> <input name="phone" required autocomplete="tel"></label>
+          <label><span data-i18n="form.email">Email</span> <input name="email" type="email" autocomplete="email"></label>
+          <label><span data-i18n="form.message">Message</span> <textarea name="message" rows="5"></textarea></label>
+          <button class="button button-primary" type="submit" data-i18n="form.submit">Send Request</button>
+        </form>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" data-cart-drawer aria-label="Quotation cart">
+      <div class="cart-panel">
+        <div class="cart-header">
+          <h2 data-i18n="cart.title">Quotation Cart</h2>
+          <button type="button" class="icon-button" data-cart-close aria-label="Close cart">x</button>
+        </div>
+        <div class="cart-items" data-cart-items></div>
+        <button class="button button-secondary" type="button" data-cart-clear data-i18n="cart.clear">Clear Cart</button>
+      </div>
+    </aside>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="#top"><img src="assets/images/logo/cupge-logo.png" alt="CupGe logo"></a>
+        <p data-i18n="footer.text">Premium industrial paper cup and packaging website architecture ready for future Google Sheets growth.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#catalog" data-i18n="nav.catalog">Catalog</a>
+        <a href="#production" data-i18n="nav.production">Production</a>
+        <a href="#contacts" data-i18n="nav.contacts">Contacts</a>
+      </nav>
+      <div class="social-list" data-social-target="footer"></div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/video.js"></script>
+    <script src="js/social-links.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
