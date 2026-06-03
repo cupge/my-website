@@ -10,6 +10,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "390/350/700 mm",
     "cartonWeight": "12.5 kg",
+    "cartonPrice": 90,
     "available": true
   },
   {
@@ -23,6 +24,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "420/360/700 mm",
     "cartonWeight": "14 kg",
+    "cartonPrice": 100,
     "available": true
   },
   {
@@ -36,6 +38,7 @@
     "cartonQuantity": "2000 pcs",
     "cartonDimensions": "400/330/740 mm",
     "cartonWeight": "13.5 kg",
+    "cartonPrice": 110,
     "available": true
   },
   {
@@ -49,6 +52,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "390/350/700 mm",
     "cartonWeight": "12.5 kg",
+    "cartonPrice": 105,
     "available": true
   },
   {
@@ -62,6 +66,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "420/360/700 mm",
     "cartonWeight": "14 kg",
+    "cartonPrice": 115,
     "available": true
   },
   {
@@ -75,6 +80,7 @@
     "cartonQuantity": "2000 pcs",
     "cartonDimensions": "400/330/740 mm",
     "cartonWeight": "13.5 kg",
+    "cartonPrice": 125,
     "available": true
   },
   {
@@ -88,6 +94,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "390/350/700 mm",
     "cartonWeight": "12.5 kg",
+    "cartonPrice": 200,
     "available": true
   },
   {
@@ -101,6 +108,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "420/360/700 mm",
     "cartonWeight": "14 kg",
+    "cartonPrice": 220,
     "available": true
   },
   {
@@ -114,6 +122,7 @@
     "cartonQuantity": "2000 pcs",
     "cartonDimensions": "400/330/740 mm",
     "cartonWeight": "13.5 kg",
+    "cartonPrice": 250,
     "available": true
   },
   {
@@ -127,6 +136,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "390/350/700 mm",
     "cartonWeight": "12.5 kg",
+    "cartonPrice": 120,
     "available": true
   },
   {
@@ -140,6 +150,7 @@
     "cartonQuantity": "3000 pcs",
     "cartonDimensions": "420/360/700 mm",
     "cartonWeight": "14 kg",
+    "cartonPrice": 135,
     "available": true
   },
   {
@@ -153,6 +164,7 @@
     "cartonQuantity": "2000 pcs",
     "cartonDimensions": "400/330/740 mm",
     "cartonWeight": "13.5 kg",
+    "cartonPrice": 150,
     "available": true
   }
 ]

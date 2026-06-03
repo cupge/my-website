@@ -72,7 +72,9 @@ const I18N = {
     "spec.coating": "საფარი",
     "spec.cartonQuantity": "ყუთში",
     "spec.cartonDimensions": "ყუთის ზომა",
-    "spec.cartonWeight": "ყუთის წონა"
+    "spec.cartonWeight": "ყუთის წონა",
+    "spec.cartonPrice": "ფასი ყუთზე",
+    "currency.gel": "ლარი"
   },
   ru: {
     "nav.about": "О компании",
@@ -147,7 +149,9 @@ const I18N = {
     "spec.coating": "Покрытие",
     "spec.cartonQuantity": "В коробке",
     "spec.cartonDimensions": "Размер коробки",
-    "spec.cartonWeight": "Вес коробки"
+    "spec.cartonWeight": "Вес коробки",
+    "spec.cartonPrice": "Цена за коробку",
+    "currency.gel": "лари"
   },
   en: {
     "nav.about": "About",
@@ -222,7 +226,9 @@ const I18N = {
     "spec.coating": "Coating",
     "spec.cartonQuantity": "Carton qty",
     "spec.cartonDimensions": "Carton size",
-    "spec.cartonWeight": "Carton weight"
+    "spec.cartonWeight": "Carton weight",
+    "spec.cartonPrice": "Price per carton",
+    "currency.gel": "GEL"
   }
 };
 

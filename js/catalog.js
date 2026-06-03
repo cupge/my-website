@@ -9,7 +9,9 @@ function renderCatalog(products) {
     const [color, darkColor, logoColor] = cupColors[product.group];
     return `
       <article class="product-card" style="--cup-color: ${color}; --cup-color-dark: ${darkColor}; --cup-logo: ${logoColor}">
-        <div class="product-visual" aria-hidden="true"></div>
+        <div class="product-visual" aria-hidden="true">
+          <img src="${cupImages[product.group]}" alt="">
+        </div>
         <div class="product-content">
           <h3>${getProductName(product)}</h3>
           <div class="product-volume">${product.volume} ml</div>
@@ -20,6 +22,7 @@ function renderCatalog(products) {
             <div><dt>${t("spec.cartonQuantity")}</dt><dd>${product.cartonQuantity}</dd></div>
             <div><dt>${t("spec.cartonDimensions")}</dt><dd>${product.cartonDimensions}</dd></div>
             <div><dt>${t("spec.cartonWeight")}</dt><dd>${product.cartonWeight}</dd></div>
+            <div><dt>${t("spec.cartonPrice")}</dt><dd>${product.cartonPrice} ${t("currency.gel")}</dd></div>
           </dl>
           <button class="button button-primary" type="button" data-add-cart="${product.id}">${t("cart.add")}</button>
         </div>

@@ -53,35 +53,19 @@
 .product-visual {
   height: 112px;
   border-radius: 6px;
-  background:
-    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.82), transparent 26%),
-    linear-gradient(165deg, var(--cup-color), var(--cup-color-dark));
+  display: grid;
+  place-items: center;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(17, 24, 39, 0.24));
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-.product-visual::before {
-  content: "";
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  top: 10px;
-  height: 16px;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.78);
-  background: rgba(17, 24, 39, 0.35);
-}
-
-.product-visual::after {
-  content: "CG";
-  position: absolute;
-  inset: 43px 12px auto;
-  color: var(--cup-logo, #111);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
+.product-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
 }
 
 .product-content h3 {

@@ -5,6 +5,13 @@ const cupColors = {
   colored: ["#9b1f30", "#3f1018", "#f5f5f5"]
 };
 
+const cupImages = {
+  white: "assets/images/products/cups/white/cup-white.png",
+  kraft: "assets/images/products/cups/kraft/cup-kraft.png",
+  black: "assets/images/products/cups/black/cup-black.png",
+  colored: "assets/images/products/cups/colored/cup-colored.png"
+};
+
 function getProductName(product) {
   return `${t(`product.${product.group}`)} ${product.volume}ml`;
 }
