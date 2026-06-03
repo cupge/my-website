@@ -58,7 +58,11 @@
   }
 
   .hero h1 {
-    font-size: 70px;
+    font-size: 62px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
   }
 
   .hero-media,
