@@ -113,8 +113,10 @@
           <button class="button button-primary" type="button" data-youtube-open data-i18n="production.youtube">Open YouTube Channel</button>
         </div>
         <div class="video-preview" data-youtube-preview>
-          <span class="play-button" aria-hidden="true"></span>
-          <strong data-i18n="production.preview">Production video preview</strong>
+          <video class="production-video" controls preload="metadata" poster="assets/images/production/factory-process.png">
+            <source src="assets/videos/production-video.mp4.mp4" type="video/mp4">
+            <span data-i18n="production.preview">Production video preview</span>
+          </video>
         </div>
       </section>
 

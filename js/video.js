@@ -1,6 +1,6 @@
 function renderYoutubePreview() {
   const preview = document.querySelector("[data-youtube-preview]");
-  if (preview) preview.setAttribute("role", "button");
+  if (preview && !preview.querySelector("video")) preview.setAttribute("role", "button");
 }
 
 function openYoutubeChannel() {

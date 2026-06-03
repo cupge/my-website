@@ -62,7 +62,8 @@
   }
 
   .hero-media,
-  .video-preview {
+  .video-preview,
+  .production-video {
     min-height: 280px;
   }
 
