@@ -197,11 +197,20 @@ img {
 
 .about-profile {
   display: grid;
-  gap: 28px;
+  gap: 24px;
   padding: 30px;
   border-radius: 8px;
   background: rgba(17, 24, 39, 0.48);
   border: 1px solid var(--line);
+}
+
+.about-profile h2 {
+  max-width: 900px;
+  margin: 0;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: 0;
 }
 
 .about-text {
