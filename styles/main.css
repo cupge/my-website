@@ -157,8 +157,7 @@ img {
 }
 
 .hero-actions,
-.hero-stats,
-.about-grid {
+.hero-stats {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -168,8 +167,7 @@ img {
   margin: 34px 0 0;
 }
 
-.hero-stats div,
-.about-grid article {
+.hero-stats div {
   padding: 18px;
   background: rgba(17, 24, 39, 0.56);
   border: 1px solid var(--line);
@@ -197,19 +195,66 @@ img {
   border: 1px solid rgba(201, 162, 78, 0.2);
 }
 
-.about-grid {
+.about-profile {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 30px;
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.48);
+  border: 1px solid var(--line);
 }
 
-.about-grid h3 {
-  margin: 0 0 10px;
-  color: var(--gold-soft);
+.about-text {
+  display: grid;
+  gap: 16px;
+  max-width: 980px;
 }
 
-.about-grid p {
+.about-text p {
   margin: 0;
   color: var(--muted);
+  font-size: 17px;
+}
+
+.about-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.about-badge {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 78, 0.24);
+}
+
+.badge-mark {
+  grid-row: span 2;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(201, 162, 78, 0.14);
+  color: var(--gold-soft);
+  border: 1px solid rgba(201, 162, 78, 0.58);
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.about-badge strong {
+  color: var(--white);
+  font-size: 18px;
+}
+
+.about-badge small {
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .site-footer {

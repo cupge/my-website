@@ -31,7 +31,7 @@
     min-height: 360px;
   }
 
-  .about-grid,
+  .about-badges,
   .product-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -73,7 +73,7 @@
     align-items: start;
   }
 
-  .about-grid,
+  .about-badges,
   .product-grid {
     grid-template-columns: 1fr;
   }

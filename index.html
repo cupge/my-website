@@ -49,7 +49,7 @@
             <a class="button button-secondary" href="#contacts" data-i18n="hero.contact">Contact Us</a>
           </div>
           <dl class="hero-stats">
-            <div><dt>150-250 ml</dt><dd data-i18n="hero.statRange">core cup range</dd></div>
+            <div><dt>150-270 ml</dt><dd data-i18n="hero.statRange">core cup range</dd></div>
             <div><dt>B2B</dt><dd data-i18n="hero.statB2b">quotation workflow</dd></div>
             <div><dt>B2C</dt><dd data-i18n="hero.statB2c">retail requests</dd></div>
             <div><dt>PE coating</dt><dd data-i18n="hero.statCoating">industrial specs</dd></div>
@@ -63,19 +63,30 @@
           <p class="eyebrow" data-i18n="about.eyebrow">Manufacturing profile</p>
           <h2 data-i18n="about.title">Paper cups and packaging with clear industrial specifications.</h2>
         </div>
-        <div class="about-grid">
-          <article>
-            <h3 data-i18n="about.productionTitle">Production</h3>
-            <p data-i18n="about.productionText">Repeatable paper cup manufacturing, packaging preparation and carton-ready B2B supply.</p>
-          </article>
-          <article>
-            <h3 data-i18n="about.qualityTitle">Quality Control</h3>
-            <p data-i18n="about.qualityText">Cards expose volume, dimensions, density, coating, carton quantity and logistics data.</p>
-          </article>
-          <article>
-            <h3 data-i18n="about.partnersTitle">Partnerships</h3>
-            <p data-i18n="about.partnersText">Built for quotation requests, distributor inquiries and future account-based availability.</p>
-          </article>
+        <div class="about-profile">
+          <div class="about-text">
+            <p data-i18n="about.p1">We have specialized in mass production and export of disposable paper cups and packaging since 2021.</p>
+            <p data-i18n="about.p2">Our production is equipped with modern high-performance machinery, including a 4-section flexographic printing machine, automated die-cutting equipment, cup forming machines and other production lines.</p>
+            <p data-i18n="about.p3">We strictly control quality at every stage of production and use only certified materials that meet international food industry standards.</p>
+            <p data-i18n="about.p4">Our goal is to be a reliable partner for the successful growth of your business.</p>
+          </div>
+          <div class="about-badges" aria-label="CupGe certifications and manufacturing facts">
+            <article class="about-badge">
+              <span class="badge-mark">ISO</span>
+              <strong data-i18n="about.badgeIso">ISO 9001:2015</strong>
+              <small data-i18n="about.badgeIsoText">quality management</small>
+            </article>
+            <article class="about-badge">
+              <span class="badge-mark">GE</span>
+              <strong data-i18n="about.badgeCountry">Georgia</strong>
+              <small data-i18n="about.badgeCountryText">country of manufacture</small>
+            </article>
+            <article class="about-badge">
+              <span class="badge-mark">OK</span>
+              <strong data-i18n="about.badgeMaterials">Certified</strong>
+              <small data-i18n="about.badgeMaterialsText">all materials are verified</small>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -128,7 +139,8 @@
           <div class="contact-lines">
             <a href="tel:+995000000000">+995 000 000 000</a>
             <a href="mailto:info@cup.ge">info@cup.ge</a>
-            <span>Tbilisi, Georgia</span>
+            <span data-i18n="contacts.addressCity">Batumi, Georgia</span>
+            <span data-i18n="contacts.addressStreet">5 Fridon Khalvashi Street</span>
             <a href="https://wa.me/995000000000">WhatsApp</a>
             <a href="https://t.me/cupge">Telegram</a>
           </div>
@@ -152,7 +164,7 @@
           <button type="button" class="icon-button" data-cart-close aria-label="Close cart">x</button>
         </div>
         <div class="cart-items" data-cart-items></div>
-        <button class="button button-primary" type="button" data-cart-request>Отправить заявку</button>
+        <button class="button button-primary" type="button" data-cart-request data-i18n="cart.request">Send Request</button>
         <button class="button button-secondary" type="button" data-cart-clear data-i18n="cart.clear">Clear Cart</button>
       </div>
     </aside>
