@@ -115,10 +115,10 @@ img {
 }
 
 .hero {
-  min-height: 680px;
-  padding: 150px max(24px, calc((100vw - 1180px) / 2)) 70px;
+  min-height: 780px;
+  padding: 142px max(24px, calc((100vw - 1180px) / 2)) 70px;
   display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1.18fr);
+  grid-template-columns: minmax(360px, 0.88fr) minmax(460px, 1.12fr);
   align-items: center;
   gap: 34px;
   position: relative;
@@ -201,7 +201,7 @@ img {
 }
 
 .hero-media {
-  min-height: 520px;
+  min-height: 650px;
   border-radius: 8px;
   background:
     linear-gradient(90deg, rgba(29, 33, 36, 0.08), rgba(29, 33, 36, 0.66)),
