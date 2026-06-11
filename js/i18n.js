@@ -6,7 +6,8 @@ const I18N = {
     "nav.contacts": "კონტაქტები",
     "nav.quote": "განაცხადი",
     "hero.eyebrow": "პრემიუმ ქაღალდის შეფუთვა",
-    "hero.lead": "CupGe - ქაღალდის ჭიქებისა და შეფუთვის სრული საწარმოო ციკლი კაფეებისთვის, რესტორნებისთვის და HoReCa ბიზნესებისთვის ეკოლოგიური PLA ქაღალდით.",
+    "hero.title": "CupGe - ქაღალდის ჭიქების მწარმოებელი საქართველოში",
+    "hero.lead": "ქაღალდის ჭიქები საქართველოში კაფეებისთვის, რესტორნებისთვის, HoReCa-სთვის და ბიზნესისთვის. CupGe აწარმოებს ქაღალდის ჭიქებსა და ქაღალდის შეფუთვას საბითუმოდ, ხელმისაწვდომი ფასებით და სტაბილური ხარისხით.",
     "hero.catalog": "კატალოგის ნახვა",
     "hero.contact": "დაგვიკავშირდით",
     "hero.statRange": "ძირითადი დიაპაზონი",
@@ -14,11 +15,11 @@ const I18N = {
     "hero.statB2c": "საცალო მოთხოვნები",
     "hero.statCoating": "სერტიფიცირებული მასალები",
     "about.eyebrow": "საწარმოო პროფილი",
-    "about.title": "CupGe მდებარეობს ბათუმში, საქართველოში.",
-    "about.p1": "ჩვენ ვსპეციალიზდებით ერთჯერადი ქაღალდის ჭიქებისა და შეფუთვის მასობრივ წარმოებასა და ექსპორტში 2021 წლიდან.",
+    "about.title": "ქაღალდის ჭიქები საქართველოში ხარისხიანი წარმოებით და ხელმისაწვდომი ფასებით",
+    "about.p1": "CupGe არის ქაღალდის ჭიქების მწარმოებელი საქართველოში. 2021 წლიდან ვაწარმოებთ ერთჯერად ქაღალდის ჭიქებსა და ქაღალდის შეფუთვას ადგილობრივი ბიზნესებისთვის და ექსპორტისთვის.",
     "about.p2": "წარმოება აღჭურვილია თანამედროვე და მაღალმწარმოებლური დანადგარებით, მათ შორის 4-სექციური ფლექსოგრაფიული საბეჭდი მანქანით, ავტომატიზებული საჭრელი მანქანით, ფორმირების დანადგარებით და სხვა მოწყობილობებით. ეს გვაძლევს საშუალებას სწრაფად შევასრულოთ შეკვეთები და გარანტირებული ხარისხი მივაწოდოთ მომხმარებელს.",
     "about.p3": "ჩვენ მკაცრად ვაკონტროლებთ ხარისხს წარმოების ყველა ეტაპზე და ვიყენებთ მხოლოდ სერტიფიცირებულ მასალებს, რომლებიც შეესაბამება კვების ინდუსტრიის საერთაშორისო სტანდარტებს. ჩვენი საწარმოო პროცესები შეესაბამება ISO 9001:2015 სტანდარტს.",
-    "about.p4": "ჩვენი მიზანია ვიყოთ საიმედო პარტნიორი თქვენი ბიზნესის წარმატებული განვითარებისთვის, მაღალი ხარისხის პროდუქციით, სტაბილური მიწოდებითა და მომსახურების მაღალი დონით.",
+    "about.p4": "ჩვენი მიზანია ვიყოთ საიმედო ქაღალდის შეფუთვის მწარმოებელი და პარტნიორი კაფეებისთვის, რესტორნებისთვის, HoReCa-სთვის, დისტრიბუტორებისთვის და ბიზნესისთვის, რომელსაც სჭირდება იაფი ქაღალდის ჭიქები ხარისხის დაკარგვის გარეშე.",
     "about.badgeIso": "ISO 9001:2015",
     "about.badgeIsoText": "ხარისხის მართვა",
     "about.badgeCountry": "საქართველო",
@@ -83,6 +84,7 @@ const I18N = {
     "nav.contacts": "Контакты",
     "nav.quote": "Заявка",
     "hero.eyebrow": "Премиальная бумажная упаковка",
+    "hero.title": "CupGe - производитель бумажных стаканов в Грузии",
     "hero.lead": "CupGe - полный цикл производства бумажных стаканов и упаковки для кафе, ресторанов и предприятий HoReCa из экологичной PLA-бумаги.",
     "hero.catalog": "Смотреть каталог",
     "hero.contact": "Связаться",
@@ -160,6 +162,7 @@ const I18N = {
     "nav.contacts": "Contacts",
     "nav.quote": "Quote",
     "hero.eyebrow": "Premium paper packaging",
+    "hero.title": "CupGe - paper cup manufacturer in Georgia",
     "hero.lead": "CupGe provides a full production cycle for paper cups and packaging for cafes, restaurants and HoReCa companies using eco-friendly PLA paper.",
     "hero.catalog": "View Catalog",
     "hero.contact": "Contact Us",
@@ -232,8 +235,39 @@ const I18N = {
   }
 };
 
+const SEO_META = {
+  ka: {
+    lang: "ka-GE",
+    canonical: "https://cupge.com/",
+    ogLocale: "ka_GE",
+    title: "CupGe | ქაღალდის ჭიქების მწარმოებელი საქართველოში",
+    description: "CupGe - ქაღალდის ჭიქების მწარმოებელი საქართველოში. ქაღალდის ჭიქების წარმოება, ქაღალდის შეფუთვა და საბითუმო მიწოდება კაფეებისთვის, რესტორნებისთვის, HoReCa-სთვის და ბიზნესისთვის."
+  },
+  ru: {
+    lang: "ru",
+    canonical: "https://cupge.com/?lang=ru",
+    ogLocale: "ru_RU",
+    title: "CupGe | Производитель бумажных стаканов в Грузии",
+    description: "CupGe производит бумажные стаканы и бумажную упаковку в Грузии для кафе, ресторанов, HoReCa, дистрибьюторов и бизнеса."
+  },
+  en: {
+    lang: "en",
+    canonical: "https://cupge.com/?lang=en",
+    ogLocale: "en_US",
+    title: "CupGe | Paper Cup Manufacturer in Georgia",
+    description: "CupGe manufactures paper cups and paper packaging in Georgia for cafes, restaurants, HoReCa, distributors and businesses."
+  }
+};
+
+function getPathLang() {
+  const queryLang = new URLSearchParams(window.location.search).get("lang");
+  if (["ka", "ru", "en"].includes(queryLang)) return queryLang;
+  const firstSegment = window.location.pathname.split("/").filter(Boolean)[0];
+  return ["ka", "ru", "en"].includes(firstSegment) ? firstSegment : "ka";
+}
+
 function getCurrentLang() {
-  return localStorage.getItem("cupge-language") || "ka";
+  return getPathLang();
 }
 
 function t(key) {
@@ -243,7 +277,15 @@ function t(key) {
 
 function applyTranslations() {
   const lang = getCurrentLang();
-  document.documentElement.lang = lang;
+  const meta = SEO_META[lang] || SEO_META.ka;
+  document.documentElement.lang = meta.lang;
+  document.title = meta.title;
+  document.querySelector("meta[name='description']")?.setAttribute("content", meta.description);
+  document.querySelector("meta[property='og:title']")?.setAttribute("content", meta.title);
+  document.querySelector("meta[property='og:description']")?.setAttribute("content", meta.description);
+  document.querySelector("meta[property='og:locale']")?.setAttribute("content", meta.ogLocale);
+  document.querySelector("meta[property='og:url']")?.setAttribute("content", meta.canonical);
+  document.querySelector("link[rel='canonical']")?.setAttribute("href", meta.canonical);
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     node.textContent = t(node.dataset.i18n);
   });
@@ -254,6 +296,6 @@ function applyTranslations() {
 }
 
 function setLanguage(lang) {
-  localStorage.setItem("cupge-language", lang);
-  applyTranslations();
+  const targetPath = lang === "ka" ? "/" : `/?lang=${lang}`;
+  window.location.href = `${targetPath}${window.location.hash}`;
 }
