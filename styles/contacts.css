@@ -135,12 +135,12 @@
 
 .request-form {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .request-form label {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
@@ -153,6 +153,6 @@
   border-radius: 7px;
   background: #111827;
   color: var(--white);
-  padding: 13px 14px;
+  padding: 10px 14px;
   resize: vertical;
 }
