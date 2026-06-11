@@ -15,6 +15,13 @@
   gap: 8px;
 }
 
+.catalog-section-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-section-tabs button,
 .catalog-tabs button {
   min-height: 34px;
   padding: 0 12px;
@@ -27,6 +34,7 @@
   font-weight: 800;
 }
 
+.catalog-section-tabs button.active,
 .catalog-tabs button.active {
   background: var(--gold);
   color: #111;
@@ -118,9 +126,9 @@
   border: 1px solid var(--line);
 }
 
-.packaging-panel summary {
+.packaging-panel h3 {
+  margin: 0 0 8px;
   color: var(--gold-soft);
-  cursor: pointer;
   font-weight: 800;
 }
 

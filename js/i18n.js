@@ -28,6 +28,9 @@ const I18N = {
     "about.badgeMaterialsText": "ყველა მასალა შემოწმებულია",
     "catalog.eyebrow": "სამრეწველო კატალოგი",
     "catalog.title": "ქაღალდის ჭიქები",
+    "catalog.wholesale": "საბითუმო გაყიდვა",
+    "catalog.retail": "საცალო ჭიქები",
+    "catalog.packagingShort": "შეფუთვა",
     "catalog.all": "ყველა",
     "catalog.white": "თეთრი",
     "catalog.kraft": "კრაფტი",
@@ -77,6 +80,8 @@ const I18N = {
     "spec.cartonDimensions": "ყუთის ზომა",
     "spec.cartonWeight": "ყუთის წონა",
     "spec.cartonPrice": "ფასი ყუთზე",
+    "spec.unitPrice": "ფასი 1 ცალზე",
+    "price.onRequest": "მოთხოვნით",
     "currency.gel": "ლარი"
   },
   ru: {
@@ -108,6 +113,9 @@ const I18N = {
     "about.badgeMaterialsText": "все материалы проверены",
     "catalog.eyebrow": "Промышленный каталог",
     "catalog.title": "Бумажные стаканы",
+    "catalog.wholesale": "Оптовая продажа",
+    "catalog.retail": "Розница стаканы",
+    "catalog.packagingShort": "Упаковка",
     "catalog.all": "Все",
     "catalog.white": "Белые",
     "catalog.kraft": "Крафт",
@@ -157,6 +165,8 @@ const I18N = {
     "spec.cartonDimensions": "Размер коробки",
     "spec.cartonWeight": "Вес коробки",
     "spec.cartonPrice": "Цена за коробку",
+    "spec.unitPrice": "Цена за штуку",
+    "price.onRequest": "по запросу",
     "currency.gel": "лари"
   },
   en: {
@@ -188,6 +198,9 @@ const I18N = {
     "about.badgeMaterialsText": "all materials are verified",
     "catalog.eyebrow": "Industrial catalog",
     "catalog.title": "Paper Cups",
+    "catalog.wholesale": "Wholesale",
+    "catalog.retail": "Retail cups",
+    "catalog.packagingShort": "Packaging",
     "catalog.all": "All",
     "catalog.white": "White",
     "catalog.kraft": "Kraft",
@@ -237,6 +250,8 @@ const I18N = {
     "spec.cartonDimensions": "Carton size",
     "spec.cartonWeight": "Carton weight",
     "spec.cartonPrice": "Price per carton",
+    "spec.unitPrice": "Price per cup",
+    "price.onRequest": "on request",
     "currency.gel": "GEL"
   }
 };

@@ -50,8 +50,10 @@ function renderCart() {
   }
 
   container.innerHTML = cart.map((item) => {
-    const product = cachedProducts.find((entry) => entry.id === item.productId);
-    const name = product ? getProductName(product) : item.productId;
+    const isRetail = item.productId.startsWith("retail-");
+    const baseId = isRetail ? item.productId.replace("retail-", "") : item.productId;
+    const product = cachedProducts.find((entry) => entry.id === baseId);
+    const name = product ? `${getProductName(product)}${isRetail ? ` - ${t("catalog.retail")}` : ""}` : item.productId;
     return `
       <article class="cart-item">
         <strong>${name}</strong>

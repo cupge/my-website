@@ -18,6 +18,14 @@ async function initApp() {
     });
   });
 
+  document.querySelectorAll("[data-catalog-section]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeCatalogSection = button.dataset.catalogSection;
+      document.querySelectorAll("[data-catalog-section]").forEach((item) => item.classList.toggle("active", item === button));
+      renderCatalog(cachedProducts);
+    });
+  });
+
   document.addEventListener("click", (event) => {
     const addButton = event.target.closest("[data-add-cart]");
     if (addButton) addToCart(addButton.dataset.addCart);
