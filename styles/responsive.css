@@ -79,9 +79,19 @@
   }
 
   .section-heading,
-  .catalog-heading {
+  .catalog-category-card {
     display: grid;
+    grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .catalog-category-card h2 {
+    font-size: 38px;
+  }
+
+  .catalog-section-tabs button {
+    min-width: 0;
+    flex-basis: 100%;
   }
 
   .about-badges,

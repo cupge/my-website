@@ -34,19 +34,7 @@ function renderSpecs(product, saleType) {
 
 function renderCatalog(products) {
   const container = document.querySelector("[data-products]");
-  const packagingPanel = document.querySelector("[data-packaging-panel]");
-  const colorFilters = document.querySelector("[data-filter]")?.closest(".catalog-tabs");
   if (!container) return;
-
-  if (activeCatalogSection === "packaging") {
-    container.innerHTML = "";
-    if (packagingPanel) packagingPanel.hidden = false;
-    if (colorFilters) colorFilters.hidden = true;
-    return;
-  }
-
-  if (packagingPanel) packagingPanel.hidden = true;
-  if (colorFilters) colorFilters.hidden = false;
 
   const visibleProducts = activeFilter === "all" ? products : products.filter((product) => product.group === activeFilter);
 
