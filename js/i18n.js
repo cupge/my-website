@@ -7,7 +7,7 @@ const I18N = {
     "nav.quote": "განაცხადი",
     "hero.eyebrow": "პრემიუმ ქაღალდის შეფუთვა",
     "hero.title": "CupGe",
-    "hero.lead": "ქაღალდის ჭიქები საქართველოში კაფეებისთვის, რესტორნებისთვის, HoReCa-სთვის და ბიზნესისთვის. CupGe აწარმოებს ქაღალდის ჭიქებსა და ქაღალდის შეფუთვას საბითუმოდ, ხელმისაწვდომი ფასებით და სტაბილური ხარისხით.",
+    "hero.lead": "CupGe არის ქაღალდის ჭიქების მწარმოებელი საქართველოში. ჩვენთან შეგიძლიათ ქაღალდის ჭიქების ყიდვა საბითუმოდ და საცალოდ ბიზნესისთვის, კაფეებისთვის, რესტორნებისთვის და HoReCa-სთვის. ვაწარმოებთ ერთჯერად ქაღალდის ჭიქებს 150 მლ, 180 მლ და 270 მლ მოცულობებით ხელმისაწვდომ ფასად, ვთავაზობთ სტაბილურ მიწოდებას, ხარისხიან მასალებს და ბრენდირების შესაძლებლობას.",
     "hero.catalog": "კატალოგის ნახვა",
     "hero.contact": "დაგვიკავშირდით",
     "hero.statRange": "ძირითადი დიაპაზონი",
@@ -35,11 +35,6 @@ const I18N = {
     "catalog.colored": "ფერადი",
     "catalog.packagingTitle": "შეფუთვის პროდუქცია",
     "catalog.packagingText": "კატეგორია ყუთებისთვის, sleeves, თავსახურებისთვის და ბრენდირებული შეფუთვისთვის.",
-    "commercial.eyebrow": "ქაღალდის ჭიქები საქართველოში",
-    "commercial.title": "ქაღალდის ჭიქების ყიდვა პირდაპირ მწარმოებლისგან",
-    "commercial.text": "CupGe არის ქაღალდის ჭიქების მწარმოებელი საქართველოში. ჩვენთან შეგიძლიათ ქაღალდის ჭიქების ყიდვა საბითუმოდ და ბიზნესისთვის, კაფეებისთვის, რესტორნებისთვის და HoReCa-სთვის. ვაწარმოებთ ერთჯერად ქაღალდის ჭიქებს 150 მლ, 180 მლ, 250 მლ და 270 მლ მოცულობებით ხელმისაწვდომ ფასად და ვთავაზობთ მომხმარებლებს სტაბილურ მიწოდებას, ხარისხიან მასალებს და ბრენდირების შესაძლებლობას. თუ გჭირდებათ იაფი ქაღალდის ჭიქები საქართველოში, დაგვიკავშირდით ფასის მისაღებად.",
-    "commercial.price": "ფასის მოთხოვნა",
-    "commercial.sales": "გაყიდვებთან დაკავშირება",
     "production.eyebrow": "CupGe წარმოება",
     "production.title": "როგორ ვაწარმოებთ",
     "production.text": "წარმოების ფოტოები, პროცესის აღწერა და ვიდეო აჩვენებს მყიდველს, რომ CupGe რეალური მწარმოებელი პარტნიორია.",
@@ -91,7 +86,7 @@ const I18N = {
     "nav.quote": "Заявка",
     "hero.eyebrow": "Премиальная бумажная упаковка",
     "hero.title": "CupGe",
-    "hero.lead": "CupGe - полный цикл производства бумажных стаканов и упаковки для кафе, ресторанов и предприятий HoReCa из экологичной PLA-бумаги.",
+    "hero.lead": "CupGe - производитель бумажных стаканов в Грузии. У нас можно купить бумажные стаканы оптом и в розницу для бизнеса, кафе, ресторанов и HoReCa. Мы производим одноразовые бумажные стаканы объемом 150 мл, 180 мл, 270 мл по доступным ценам, предлагаем стабильные поставки, качественные материалы и возможность брендирования. Если вам нужны дешевые бумажные стаканы в Грузии, свяжитесь с нами для расчета цены.",
     "hero.catalog": "Смотреть каталог",
     "hero.contact": "Связаться",
     "hero.statRange": "основной диапазон",
@@ -119,11 +114,6 @@ const I18N = {
     "catalog.colored": "Цветные",
     "catalog.packagingTitle": "Упаковочная продукция",
     "catalog.packagingText": "Расширяемая категория для коробок, sleeves, крышек и брендированной упаковки.",
-    "commercial.eyebrow": "Бумажные стаканы в Грузии",
-    "commercial.title": "Купить бумажные стаканы у производителя",
-    "commercial.text": "CupGe - производитель бумажных стаканов в Грузии. У нас можно купить бумажные стаканы оптом для бизнеса, кафе, ресторанов и HoReCa. Мы производим одноразовые бумажные стаканы объемом 150 мл, 180 мл, 250 мл и 270 мл по доступным ценам, предлагаем стабильные поставки, качественные материалы и возможность брендирования. Если вам нужны дешевые бумажные стаканы в Грузии, свяжитесь с нами для расчета цены.",
-    "commercial.price": "Запросить цену",
-    "commercial.sales": "Связаться с продажами",
     "production.eyebrow": "Производство CupGe",
     "production.title": "Как мы производим",
     "production.text": "Фото производства, описание процесса и видео показывают покупателю, что CupGe является реальным производителем.",
@@ -175,7 +165,7 @@ const I18N = {
     "nav.quote": "Quote",
     "hero.eyebrow": "Premium paper packaging",
     "hero.title": "CupGe",
-    "hero.lead": "CupGe provides a full production cycle for paper cups and packaging for cafes, restaurants and HoReCa companies using eco-friendly PLA paper.",
+    "hero.lead": "CupGe is a paper cup manufacturer in Georgia. You can buy paper cups wholesale and retail for businesses, cafes, restaurants and HoReCa. We produce disposable paper cups in 150 ml, 180 ml and 270 ml volumes at accessible prices, with stable supply, quality materials and branding options.",
     "hero.catalog": "View Catalog",
     "hero.contact": "Contact Us",
     "hero.statRange": "core cup range",
@@ -203,11 +193,6 @@ const I18N = {
     "catalog.colored": "Colored",
     "catalog.packagingTitle": "Packaging products",
     "catalog.packagingText": "Expandable category reserved for cartons, sleeves, lids and custom branded packaging.",
-    "commercial.eyebrow": "Paper cups in Georgia",
-    "commercial.title": "Buy paper cups from a manufacturer",
-    "commercial.text": "CupGe is a paper cup manufacturer in Georgia. You can buy wholesale paper cups for businesses, cafes, restaurants and HoReCa. We produce disposable paper cups in 150 ml, 180 ml, 250 ml and 270 ml volumes at accessible prices and offer stable supply, quality materials and branding options. If you need affordable paper cups in Georgia, contact us for pricing.",
-    "commercial.price": "Request price",
-    "commercial.sales": "Contact sales",
     "production.eyebrow": "CupGe Production",
     "production.title": "How We Manufacture",
     "production.text": "Factory visuals, process notes and video previews help buyers verify that CupGe is a real manufacturing partner.",
@@ -259,21 +244,21 @@ const SEO_META = {
     canonical: "https://cupge.com/",
     ogLocale: "ka_GE",
     title: "CupGe | ქაღალდის ჭიქების მწარმოებელი საქართველოში",
-    description: "CupGe - ქაღალდის ჭიქების მწარმოებელი საქართველოში. ქაღალდის ჭიქების წარმოება, ქაღალდის შეფუთვა და საბითუმო მიწოდება კაფეებისთვის, რესტორნებისთვის, HoReCa-სთვის და ბიზნესისთვის."
+    description: "CupGe - ქაღალდის ჭიქების მწარმოებელი საქართველოში. ქაღალდის ჭიქების ყიდვა საბითუმოდ და საცალოდ, ხელმისაწვდომი ფასები, ბრენდირება და მიწოდება ბიზნესისთვის."
   },
   ru: {
     lang: "ru",
     canonical: "https://cupge.com/?lang=ru",
     ogLocale: "ru_RU",
-    title: "CupGe | Производитель бумажных стаканов в Грузии",
-    description: "CupGe производит бумажные стаканы и бумажную упаковку в Грузии для кафе, ресторанов, HoReCa, дистрибьюторов и бизнеса."
+    title: "CupGe | Купить бумажные стаканы в Грузии",
+    description: "CupGe - производитель бумажных стаканов в Грузии. Купить бумажные стаканы оптом и в розницу, доступные цены, брендирование и поставки."
   },
   en: {
     lang: "en",
     canonical: "https://cupge.com/?lang=en",
     ogLocale: "en_US",
-    title: "CupGe | Paper Cup Manufacturer in Georgia",
-    description: "CupGe manufactures paper cups and paper packaging in Georgia for cafes, restaurants, HoReCa, distributors and businesses."
+    title: "CupGe | Buy Paper Cups in Georgia",
+    description: "CupGe is a paper cup manufacturer in Georgia. Buy paper cups wholesale and retail with accessible prices, branding and stable supply."
   }
 };
 

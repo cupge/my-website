@@ -153,13 +153,18 @@ img {
   max-width: 620px;
   margin: 28px 0;
   color: var(--muted);
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(16px, 1.55vw, 20px);
+  line-height: 1.55;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+}
+
+.hero-actions .button {
+  min-width: 210px;
 }
 
 .hero-stats {
@@ -274,39 +279,6 @@ img {
 .about-badge small {
   color: var(--muted);
   font-weight: 700;
-}
-
-.commercial-seo-section {
-  padding-top: 24px;
-}
-
-.commercial-seo-copy {
-  max-width: 980px;
-  padding: 28px;
-  border-radius: 8px;
-  background: rgba(17, 24, 39, 0.48);
-  border: 1px solid rgba(201, 162, 78, 0.24);
-}
-
-.commercial-seo-copy h2 {
-  margin: 0;
-  font-family: Manrope, Inter, sans-serif;
-  font-size: clamp(26px, 3vw, 40px);
-  line-height: 1.12;
-}
-
-.commercial-seo-copy p:not(.eyebrow) {
-  max-width: 900px;
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 17px;
-}
-
-.commercial-seo-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 22px;
 }
 
 .site-footer {
