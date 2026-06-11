@@ -41,6 +41,12 @@
   font-weight: 700;
 }
 
+.contact-address {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
 .map-card {
   min-height: 220px;
   display: grid;
