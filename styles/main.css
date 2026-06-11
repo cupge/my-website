@@ -296,3 +296,109 @@ img {
   gap: 18px;
   color: var(--muted);
 }
+
+.seo-page {
+  padding: 120px max(24px, calc((100vw - 1180px) / 2)) 72px;
+}
+
+.seo-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 34px;
+  align-items: center;
+  min-height: 460px;
+}
+
+.seo-copy h1 {
+  margin: 0;
+  max-width: 860px;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1.02;
+  color: var(--gold);
+}
+
+.seo-copy p {
+  margin: 22px 0 0;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: clamp(18px, 2vw, 22px);
+}
+
+.seo-media {
+  min-height: 360px;
+  border-radius: 8px;
+  border: 1px solid rgba(201, 162, 78, 0.24);
+  background:
+    linear-gradient(90deg, rgba(29, 33, 36, 0.18), rgba(29, 33, 36, 0.68)),
+    url("../assets/images/production/factory-process.png") center / cover;
+  box-shadow: var(--shadow);
+}
+
+.seo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.seo-card {
+  padding: 22px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(17, 24, 39, 0.48);
+}
+
+.seo-card h2,
+.seo-card h3 {
+  margin: 0 0 12px;
+  color: var(--white);
+  line-height: 1.18;
+}
+
+.seo-card p,
+.seo-card li {
+  color: var(--muted);
+}
+
+.seo-card ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.seo-links {
+  margin-top: 34px;
+  padding: 24px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 162, 78, 0.24);
+}
+
+.seo-links h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+
+.seo-links nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.seo-links a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.seo-contact-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+  font-weight: 800;
+}

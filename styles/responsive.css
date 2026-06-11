@@ -16,6 +16,7 @@
   }
 
   .hero,
+  .seo-hero,
   .production-section,
   .contacts-section,
   .site-footer {
@@ -37,6 +38,7 @@
   }
 
   .about-badges,
+  .seo-grid,
   .product-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -62,8 +64,16 @@
     gap: 28px;
   }
 
+  .seo-page {
+    padding: 104px 14px 44px;
+  }
+
   .hero h1 {
     font-size: 52px;
+  }
+
+  .seo-copy h1 {
+    font-size: 38px;
   }
 
   .hero-stats {
@@ -73,6 +83,7 @@
   }
 
   .hero-media,
+  .seo-media,
   .video-preview,
   .production-video {
     min-height: 280px;
@@ -85,6 +96,7 @@
   }
 
   .about-badges,
+  .seo-grid,
   .product-grid {
     grid-template-columns: 1fr;
   }
