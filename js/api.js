@@ -1,5 +1,5 @@
 async function getProducts() {
-  const response = await fetch("/data/products.json");
+  const response = await fetch("/data/products.json?v=20260612-retail-prices");
   return response.json();
 }
 
