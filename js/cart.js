@@ -19,7 +19,22 @@ function addToCart(productId) {
     cart.push({ productId, quantity: 1 });
   }
   saveCart(cart);
-  alert(t("cart.added"));
+  showCartToast(t("cart.added"));
+}
+
+function showCartToast(message) {
+  const toast = document.querySelector("[data-toast]");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.hidden = false;
+  toast.classList.add("show");
+  window.clearTimeout(showCartToast.timeoutId);
+  showCartToast.timeoutId = window.setTimeout(() => {
+    toast.classList.remove("show");
+    window.setTimeout(() => {
+      if (!toast.classList.contains("show")) toast.hidden = true;
+    }, 220);
+  }, 2200);
 }
 
 function removeFromCart(productId) {

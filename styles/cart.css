@@ -122,6 +122,29 @@
   white-space: nowrap;
 }
 
+.site-toast {
+  position: fixed;
+  right: 24px;
+  top: 104px;
+  z-index: 60;
+  max-width: min(360px, calc(100% - 32px));
+  padding: 14px 18px;
+  border: 1px solid rgba(201, 162, 78, 0.42);
+  border-radius: 8px;
+  background: rgba(17, 24, 39, 0.96);
+  color: var(--white);
+  box-shadow: var(--shadow);
+  font-weight: 900;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.site-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 620px) {
   .cart-panel {
     width: 100%;
@@ -138,5 +161,11 @@
   .cart-line-total {
     justify-self: start;
     text-align: left;
+  }
+
+  .site-toast {
+    left: 16px;
+    right: 16px;
+    top: 92px;
   }
 }
