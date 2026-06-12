@@ -7,13 +7,25 @@ const SETTINGS_SHEET = "Settings";
 const DEFAULT_LAST_ORDER_NUMBER = 1000;
 
 function doGet(e) {
-  const spreadsheet = getSpreadsheet();
-  ensureRequiredSheets(spreadsheet);
-  return jsonResponse({
-    ok: true,
-    spreadsheet: spreadsheet.getName(),
-    nextLeadId: String(peekNextLeadId(spreadsheet))
-  });
+  try {
+    if (e && e.parameter && e.parameter.payload) {
+      const payload = JSON.parse(e.parameter.payload || "{}");
+      return jsonResponse(handleCupGeLead(payload), e.parameter.callback);
+    }
+
+    const spreadsheet = getSpreadsheet();
+    ensureRequiredSheets(spreadsheet);
+    return jsonResponse({
+      ok: true,
+      spreadsheet: spreadsheet.getName(),
+      nextLeadId: String(peekNextLeadId(spreadsheet))
+    }, e && e.parameter && e.parameter.callback);
+  } catch (error) {
+    return jsonResponse({
+      ok: false,
+      error: errorToString(error)
+    }, e && e.parameter && e.parameter.callback);
+  }
 }
 
 function doPost(e) {
@@ -210,8 +222,17 @@ function errorToString(error) {
   return error && error.stack ? error.stack : String(error);
 }
 
-function jsonResponse(data) {
+function jsonResponse(data, callback) {
+  const json = JSON.stringify(data);
+  const safeCallback = String(callback || "");
+
+  if (/^[A-Za-z_$][0-9A-Za-z_$]*(\.[A-Za-z_$][0-9A-Za-z_$]*)*$/.test(safeCallback)) {
+    return ContentService
+      .createTextOutput(`${safeCallback}(${json});`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+
   return ContentService
-    .createTextOutput(JSON.stringify(data))
+    .createTextOutput(json)
     .setMimeType(ContentService.MimeType.JSON);
 }

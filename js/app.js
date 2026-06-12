@@ -54,12 +54,6 @@ async function initApp() {
   });
   document.querySelector("[data-youtube-open]")?.addEventListener("click", openYoutubeChannel);
   document.querySelector("[data-order-modal-ok]")?.addEventListener("click", closeOrderSuccess);
-  document.querySelector("[data-order-modal]")?.addEventListener("click", (event) => {
-    if (event.target.matches("[data-order-modal]")) closeOrderSuccess();
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeOrderSuccess();
-  });
 
   document.querySelector("[data-order-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -69,7 +63,6 @@ async function initApp() {
       clearCart();
       event.currentTarget.reset();
       const message = t("form.sent").replace("{id}", result.leadId);
-      showCartToast(message);
       showOrderSuccess(message);
     } catch (error) {
       console.error("CupGe order submit failed", error);
