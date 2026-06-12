@@ -7,6 +7,10 @@ const PRODUCTS_SHEET = "Products";
 const SETTINGS_SHEET = "Settings";
 const CRM_GMAIL_LABELS = ["SALES", "INFO"];
 const DEFAULT_LAST_ORDER_NUMBER = 1000;
+const LEADS_DEFAULT_ROW_HEIGHT = 28;
+const LEADS_HEADER_ROW_HEIGHT = 32;
+const LEADS_COMMENT_COLUMN = 9;
+const LEADS_COMMENT_PREVIEW_LIMIT = 120;
 
 function doGet(e) {
   const spreadsheet = getSpreadsheet();
@@ -145,6 +149,32 @@ function fixExistingLeadSourceTypes() {
   return `OK: updated ${updatedCount} lead rows`;
 }
 
+function compactExistingLeadComments() {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  const sheet = spreadsheet.getSheetByName(LEADS_SHEET);
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return "OK: no comments to compact";
+
+  let updatedCount = 0;
+  for (let rowIndex = 2; rowIndex <= lastRow; rowIndex += 1) {
+    const cell = sheet.getRange(rowIndex, LEADS_COMMENT_COLUMN);
+    const fullComment = String(cell.getValue() || cell.getNote() || "");
+    if (!fullComment) {
+      formatLeadRow(sheet, rowIndex);
+      continue;
+    }
+
+    const preview = buildCommentPreview(fullComment);
+    cell.setValue(preview);
+    cell.setNote(fullComment);
+    formatLeadRow(sheet, rowIndex);
+    updatedCount += 1;
+  }
+
+  return `OK: compacted ${updatedCount} lead comments`;
+}
+
 function isWebsiteNotificationEmail(message) {
   const subject = String(message.getSubject() || "");
   const from = String(message.getFrom() || "");
@@ -193,7 +223,7 @@ function getSpreadsheet() {
 }
 
 function ensureRequiredSheets(spreadsheet) {
-  ensureSheet(spreadsheet, LEADS_SHEET, [
+  const leads = ensureSheet(spreadsheet, LEADS_SHEET, [
     "ID", "Дата", "Источник", "Тип", "Имя", "Телефон", "Компания", "Email", "Комментарий", "Сумма", "Валюта", "Статус"
   ]);
   ensureSheet(spreadsheet, PRODUCTS_SHEET, [
@@ -203,6 +233,7 @@ function ensureRequiredSheets(spreadsheet) {
   if (!getSettingRow(settings, "LastOrderNumber")) {
     settings.appendRow(["LastOrderNumber", DEFAULT_LAST_ORDER_NUMBER]);
   }
+  formatLeadsSheet(leads);
 }
 
 function ensureSheet(spreadsheet, name, headers) {
@@ -247,7 +278,9 @@ function getSettingRow(settings, key) {
 
 function appendLead(spreadsheet, leadId, createdAt, payload) {
   const customer = payload.customer || {};
-  spreadsheet.getSheetByName(LEADS_SHEET).appendRow([
+  const sheet = spreadsheet.getSheetByName(LEADS_SHEET);
+  const fullComment = String(customer.message || "");
+  sheet.appendRow([
     leadId,
     createdAt,
     payload.source || "Website",
@@ -256,11 +289,16 @@ function appendLead(spreadsheet, leadId, createdAt, payload) {
     customer.phone || "",
     customer.company || "",
     customer.email || "",
-    customer.message || "",
+    buildCommentPreview(fullComment),
     numberValue(payload.total),
     payload.currency || "GEL",
     "New"
   ]);
+  const rowIndex = sheet.getLastRow();
+  if (fullComment) {
+    sheet.getRange(rowIndex, LEADS_COMMENT_COLUMN).setNote(fullComment);
+  }
+  formatLeadRow(sheet, rowIndex);
 }
 
 function appendProducts(spreadsheet, leadId, items) {
@@ -347,6 +385,45 @@ function parseEmailAddress(from) {
 
 function numberValue(value) {
   return Number(String(value || 0).replace(",", ".")) || 0;
+}
+
+function formatLeadsSheet(sheet) {
+  sheet.setFrozenRows(1);
+  sheet.setRowHeight(1, LEADS_HEADER_ROW_HEIGHT);
+  sheet.getRange(1, 1, 1, 12)
+    .setFontWeight("bold")
+    .setHorizontalAlignment("center")
+    .setVerticalAlignment("middle")
+    .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+
+  sheet.setColumnWidth(1, 70);
+  sheet.setColumnWidth(2, 150);
+  sheet.setColumnWidths(3, 2, 110);
+  sheet.setColumnWidths(5, 4, 150);
+  sheet.setColumnWidth(LEADS_COMMENT_COLUMN, 360);
+  sheet.setColumnWidths(10, 3, 90);
+
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return;
+
+  sheet.setRowHeights(2, lastRow - 1, LEADS_DEFAULT_ROW_HEIGHT);
+  sheet.getRange(2, 1, lastRow - 1, 12)
+    .setVerticalAlignment("middle")
+    .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+}
+
+function formatLeadRow(sheet, rowIndex) {
+  if (rowIndex < 2) return;
+  sheet.setRowHeight(rowIndex, LEADS_DEFAULT_ROW_HEIGHT);
+  sheet.getRange(rowIndex, 1, 1, 12)
+    .setVerticalAlignment("middle")
+    .setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
+}
+
+function buildCommentPreview(value) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text.length <= LEADS_COMMENT_PREVIEW_LIMIT) return text;
+  return `${text.slice(0, LEADS_COMMENT_PREVIEW_LIMIT - 3)}...`;
 }
 
 function normalizeLeadType(value) {
