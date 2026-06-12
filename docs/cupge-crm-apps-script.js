@@ -161,15 +161,17 @@ function appendProducts(spreadsheet, leadId, items) {
 function sendSalesEmail(leadId, createdAt, payload, sheetError) {
   const customer = payload.customer || {};
   const items = payload.items || [];
+  const leadType = payload.type || (items.length ? "Sale" : "Inquiry");
+  const emailTitle = leadType === "Sale" ? "order" : "inquiry";
   const lines = items.map((item) => (
     `${item.productName || item.name || item.productId || ""} | ${item.volume || ""} | ${item.unitType || ""} | qty: ${item.quantity || 0} | price: ${item.price || item.unitPrice || 0} | sum: ${item.lineTotal || item.total || 0}`
   )).join("\n");
   const body = [
-    `New CupGe website order #${leadId}`,
+    `New CupGe website ${emailTitle} #${leadId}`,
     "",
     `Date: ${createdAt}`,
     `Source: ${payload.source || "Website"}`,
-    `Type: ${payload.type || "Sale"}`,
+    `Type: ${leadType}`,
     `Name: ${customer.name || ""}`,
     `Phone: ${customer.phone || ""}`,
     `Company: ${customer.company || ""}`,
@@ -184,7 +186,7 @@ function sendSalesEmail(leadId, createdAt, payload, sheetError) {
   ].join("\n");
   MailApp.sendEmail({
     to: SALES_EMAIL,
-    subject: `CupGe website order #${leadId}`,
+    subject: `CupGe website ${emailTitle} #${leadId}`,
     body
   });
 }
@@ -192,9 +194,6 @@ function sendSalesEmail(leadId, createdAt, payload, sheetError) {
 function validatePayload(payload) {
   if (!payload || typeof payload !== "object") {
     throw new Error("Missing request payload");
-  }
-  if (!Array.isArray(payload.items) || !payload.items.length) {
-    throw new Error("Order has no products");
   }
   const customer = payload.customer || {};
   if (!customer.name && !customer.phone && !customer.email) {

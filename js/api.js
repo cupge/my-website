@@ -37,7 +37,7 @@ function buildCrmPayload(orderData) {
   const total = crmItems.reduce((sum, item) => sum + item.lineTotal, 0);
   return {
     source: "Website",
-    type: "Sale",
+    type: crmItems.length ? "Sale" : "Inquiry",
     currency: "GEL",
     language: getCurrentLang(),
     pageUrl: window.location.href,
@@ -49,9 +49,6 @@ function buildCrmPayload(orderData) {
 
 async function sendOrder(orderData) {
   const payload = buildCrmPayload(orderData);
-  if (!payload.items.length) {
-    throw new Error("Cart is empty");
-  }
   if (!CRM_ENDPOINT) {
     console.error("CupGe CRM endpoint is not configured.", payload);
     throw new Error("CRM endpoint is not configured");
