@@ -1,5 +1,5 @@
-const SPREADSHEET_ID = "1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks";
-const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks/edit";
+const SPREADSHEET_ID = "1EspRM9cXv2uwmoRiWXcOQIINE3pJl008sVYuBC_FEks";
+const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1EspRM9cXv2uwmoRiWXcOQIINE3pJl008sVYuBC_FEks/edit";
 const SALES_EMAIL = "sales@cupge.com";
 const LEADS_SHEET = "Leads";
 const PRODUCTS_SHEET = "Products";
