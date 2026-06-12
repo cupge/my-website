@@ -54,19 +54,23 @@ async function sendOrder(orderData) {
     throw new Error("CRM endpoint is not configured");
   }
 
+  let result;
+
   try {
     const response = await fetch(CRM_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
-    const result = await response.json();
-    if (!response.ok || !result.ok) {
-      throw new Error(result.error || "CRM request failed");
-    }
-    return result;
+    result = await response.json();
+    if (!response.ok) throw new Error(result.error || "CRM request failed");
   } catch (error) {
     console.warn("CupGe CRM response could not be read after submit.", error);
+  }
+
+  if (result) {
+    if (!result.ok) throw new Error(result.error || "CRM request failed");
+    return result;
   }
 
   return {

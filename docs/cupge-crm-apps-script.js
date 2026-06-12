@@ -4,6 +4,7 @@ const SALES_EMAIL = "sales@cupge.com";
 const LEADS_SHEET = "Leads";
 const PRODUCTS_SHEET = "Products";
 const SETTINGS_SHEET = "Settings";
+const SALES_GMAIL_LABEL = "SALES";
 const DEFAULT_LAST_ORDER_NUMBER = 1000;
 
 function doGet(e) {
@@ -33,6 +34,53 @@ function testSetup() {
   const spreadsheet = getSpreadsheet();
   ensureRequiredSheets(spreadsheet);
   return `OK: ${spreadsheet.getName()}`;
+}
+
+function importSalesEmails() {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  const threads = GmailApp.search(`label:${SALES_GMAIL_LABEL} newer_than:30d -label:CRM_IMPORTED`, 0, 20);
+  const importedLabel = getOrCreateGmailLabel("CRM_IMPORTED");
+  let importedCount = 0;
+
+  threads.forEach((thread) => {
+    const messages = thread.getMessages();
+    const message = messages[messages.length - 1];
+    const from = message.getFrom();
+    const body = getPlainMessageBody(message).slice(0, 1200);
+    const leadId = getNextLeadId(spreadsheet);
+    const payload = {
+      source: "Email",
+      type: "Inquiry",
+      total: 0,
+      currency: "GEL",
+      customer: {
+        name: parseEmailName(from),
+        email: parseEmailAddress(from),
+        message: `Subject: ${message.getSubject()}\n\n${body}`
+      },
+      items: []
+    };
+
+    appendLead(spreadsheet, leadId, message.getDate(), payload);
+    thread.addLabel(importedLabel);
+    importedCount += 1;
+  });
+
+  return `Imported email inquiries: ${importedCount}`;
+}
+
+function setupSalesEmailImportTrigger() {
+  ScriptApp.getProjectTriggers()
+    .filter((trigger) => trigger.getHandlerFunction() === "importSalesEmails")
+    .forEach((trigger) => ScriptApp.deleteTrigger(trigger));
+
+  ScriptApp.newTrigger("importSalesEmails")
+    .timeBased()
+    .everyMinutes(10)
+    .create();
+
+  return "OK: sales email import trigger runs every 10 minutes";
 }
 
 function handleCupGeLead(payload) {
@@ -199,6 +247,27 @@ function validatePayload(payload) {
   if (!customer.name && !customer.phone && !customer.email) {
     throw new Error("Missing customer contact details");
   }
+}
+
+function getOrCreateGmailLabel(name) {
+  return GmailApp.getUserLabelByName(name) || GmailApp.createLabel(name);
+}
+
+function getPlainMessageBody(message) {
+  return String(message.getPlainBody() || message.getBody() || "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parseEmailName(from) {
+  const match = String(from || "").match(/^"?([^"<]+)"?\s*</);
+  return match ? match[1].trim() : String(from || "").replace(/<[^>]+>/g, "").trim();
+}
+
+function parseEmailAddress(from) {
+  const match = String(from || "").match(/<([^>]+)>/);
+  return match ? match[1].trim() : String(from || "").trim();
 }
 
 function numberValue(value) {
