@@ -57,7 +57,15 @@ async function initApp() {
   document.querySelector("[data-order-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = Object.fromEntries(new FormData(event.currentTarget).entries());
-    await sendOrder({ customer: formData, items: getCart() });
+    try {
+      const result = await sendOrder({ customer: formData, items: getCart(), products: cachedProducts });
+      clearCart();
+      event.currentTarget.reset();
+      showCartToast(t("form.sent").replace("{id}", result.leadId));
+    } catch (error) {
+      console.error("CupGe order submit failed", error);
+      showCartToast(t("form.error"));
+    }
   });
 
   window.addEventListener("cupge:language-changed", () => {

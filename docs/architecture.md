@@ -12,7 +12,7 @@ Current phase:
 - JSON data files
 - localStorage quote cart
 
-Future data layer: Google Sheets through a Google Apps Script web app endpoint.
+CRM data layer: Google Sheets through a Google Apps Script web app endpoint.
 
 ## Folder Structure
 
@@ -23,13 +23,14 @@ Future data layer: Google Sheets through a Google Apps Script web app endpoint.
 - `data/social-links.json` - social media links
 - `assets/images/logo/` - CupGe logo
 - `assets/images/production/` - production visuals
-- `docs/google-sheets-schema.md` - planned Sheets structure
+- `docs/google-sheets-schema.md` - CRM Sheets structure and deployment notes
+- `docs/cupge-crm-apps-script.js` - Google Apps Script Web App code
 
 ## Catalog Architecture
 
 Products are loaded through `getProducts()` in `js/api.js`.
 
-For now, the function reads `data/products.json`. Later it can read from a Google Apps Script endpoint without changing the catalog UI.
+For now, the function reads `data/products.json`. Order requests are sent to the CRM endpoint configured in `js/api.js`.
 
 ## Cart Logic
 
@@ -49,11 +50,11 @@ The site supports Georgian as the default language, plus Russian and English. Tr
 
 ## Google Sheets Integration Strategy
 
-1. Create a Google Sheet with `Products`, `Orders`, and `OrderItems` tabs.
-2. Create a Google Apps Script web app attached to the Sheet.
-3. Replace `getProducts()` with a read call to the Apps Script endpoint.
-4. Replace `sendOrder()` with a POST request that appends rows to `Orders` and `OrderItems`.
-5. Keep `localStorage` cart behavior on the frontend.
+1. Use the existing Google Sheet with `Leads` and `Products` tabs.
+2. Deploy `docs/cupge-crm-apps-script.js` as a Google Apps Script web app.
+3. Paste the deployed Web App URL into `CRM_ENDPOINT` in `js/api.js`.
+4. `sendOrder()` posts customer and cart data to Apps Script.
+5. Apps Script appends one lead row, one product row per cart item, creates `Settings` for `LastOrderNumber`, and emails `sales@cupge.com`.
 
 ## YouTube and Social
 
@@ -64,7 +65,7 @@ Social links are isolated in `data/social-links.json` and rendered through `js/s
 ## Scaling Recommendations
 
 - Replace mock product visuals with real product photos.
-- Keep product data in Google Sheets once the catalog grows.
+- Keep product data dynamic so new volumes and categories continue to work without CRM code changes.
 - Add order status columns in Sheets for internal processing.
 - Add form validation and spam protection before public launch.
 - Add real Google Map embed and social media URLs.

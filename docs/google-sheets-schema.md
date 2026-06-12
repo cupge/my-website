@@ -1,65 +1,50 @@
-# Google Sheets Structure
+# CupGe CRM Google Sheets Integration
 
-Use one spreadsheet for the first production version.
+Spreadsheet ID:
 
-## Sheet: Products
-
-| Column | Example |
-|---|---|
-| id | white-150 |
-| category | cups |
-| group | white |
-| name_ka | თეთრი ქაღალდის ჭიქა |
-| name_ru | Белый бумажный стакан |
-| name_en | White Paper Cup |
-| volume | 150 |
-| dimensions | 63/45/60 mm |
-| paperDensity | 180 gsm |
-| coating | Single-side PE coating |
-| cartonQuantity | 2000 pcs |
-| cartonDimensions | 430/360/530 mm |
-| cartonWeight | 9 kg |
-| available | TRUE |
-
-## Sheet: Orders
-
-| Column | Example |
-|---|---|
-| order_id | ORD-20260602-0001 |
-| created_at | 2026-06-02T13:00:00Z |
-| name | Customer name |
-| phone | +995... |
-| email | info@example.com |
-| message | Need quote |
-| language | ka |
-| status | new |
-
-## Sheet: OrderItems
-
-| Column | Example |
-|---|---|
-| order_id | ORD-20260602-0001 |
-| product_id | white-150 |
-| quantity | 2 |
-
-## Apps Script Payload
-
-Future `sendOrder()` can POST this shape:
-
-```json
-{
-  "customer": {
-    "name": "Customer name",
-    "phone": "+995...",
-    "email": "info@example.com",
-    "message": "Need quote"
-  },
-  "items": [
-    {
-      "productId": "white-150",
-      "quantity": 2
-    }
-  ],
-  "language": "ka"
-}
+```text
+1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks
 ```
+
+## Sheets
+
+### Leads
+
+```text
+ID | Дата | Источник | Тип | Имя | Телефон | Компания | Email | Комментарий | Сумма | Валюта | Статус
+```
+
+One row per website request.
+
+### Products
+
+```text
+LeadID | Товар | Объем | UnitType | Количество | Цена | Сумма
+```
+
+One row per cart item. `UnitType` is generated automatically:
+
+- `box` for wholesale carton orders
+- `retail` for retail piece orders
+
+### Settings
+
+Created automatically by Apps Script if missing.
+
+```text
+Key | Value
+LastOrderNumber | 1024
+```
+
+## Deployment
+
+1. Open the Google Spreadsheet.
+2. Go to `Extensions` -> `Apps Script`.
+3. Paste the contents of [cupge-crm-apps-script.js](cupge-crm-apps-script.js).
+4. Deploy as `Web app`.
+5. Execute as: `Me`.
+6. Who has access: `Anyone`.
+7. Copy the Web App URL.
+8. Paste the URL into `CRM_ENDPOINT` in `js/api.js`.
+
+The website sends product data dynamically from the cart and product catalog. New product types, new volumes, and future categories do not require Apps Script changes.
