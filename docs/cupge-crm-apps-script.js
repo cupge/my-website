@@ -6,6 +6,16 @@ const PRODUCTS_SHEET = "Products";
 const SETTINGS_SHEET = "Settings";
 const DEFAULT_LAST_ORDER_NUMBER = 1000;
 
+function doGet(e) {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  return jsonResponse({
+    ok: true,
+    spreadsheet: spreadsheet.getName(),
+    nextLeadId: String(peekNextLeadId(spreadsheet))
+  });
+}
+
 function doPost(e) {
   try {
     const payload = JSON.parse((e && e.postData && e.postData.contents) || "{}");
@@ -17,16 +27,6 @@ function doPost(e) {
       error: errorToString(error)
     });
   }
-}
-
-function doGet() {
-  const spreadsheet = getSpreadsheet();
-  ensureRequiredSheets(spreadsheet);
-  return jsonResponse({
-    ok: true,
-    spreadsheet: spreadsheet.getName(),
-    nextLeadId: String(peekNextLeadId(spreadsheet))
-  });
 }
 
 function testSetup() {
@@ -51,11 +51,7 @@ function handleCupGeLead(payload) {
     throw new Error(`Google Sheets write failed: ${sheetError}`);
   }
 
-  try {
-    sendSalesEmail(leadId, createdAt, payload, "");
-  } catch (error) {
-    throw new Error(`Email send failed: ${errorToString(error)}`);
-  }
+  sendSalesEmail(leadId, createdAt, payload, "");
 
   return {
     ok: true,
@@ -149,12 +145,12 @@ function appendProducts(spreadsheet, leadId, items) {
   if (!items.length) return;
   const rows = items.map((item) => [
     leadId,
-    item.productName || item.productId || "",
+    item.productName || item.name || item.productId || "",
     item.volume || "",
     item.unitType || "",
     numberValue(item.quantity),
-    numberValue(item.price),
-    numberValue(item.lineTotal)
+    numberValue(item.price || item.unitPrice),
+    numberValue(item.lineTotal || item.total)
   ]);
   const productsSheet = spreadsheet.getSheetByName(PRODUCTS_SHEET);
   productsSheet
@@ -166,7 +162,7 @@ function sendSalesEmail(leadId, createdAt, payload, sheetError) {
   const customer = payload.customer || {};
   const items = payload.items || [];
   const lines = items.map((item) => (
-    `${item.productName || item.productId || ""} | ${item.volume || ""} | ${item.unitType || ""} | qty: ${item.quantity || 0} | price: ${item.price || 0} | sum: ${item.lineTotal || 0}`
+    `${item.productName || item.name || item.productId || ""} | ${item.volume || ""} | ${item.unitType || ""} | qty: ${item.quantity || 0} | price: ${item.price || item.unitPrice || 0} | sum: ${item.lineTotal || item.total || 0}`
   )).join("\n");
   const body = [
     `New CupGe website order #${leadId}`,

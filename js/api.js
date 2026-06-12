@@ -1,5 +1,5 @@
 // Paste the deployed Google Apps Script Web App URL here.
-const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxLK0q-tbBrO7NgWhN7WxZ_EhuoVMrvCOICmIidxtz4JxawJIh44nlf4cGi464mODrM/exec";
+const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxkda-_6SmL2hntkPS7InpllPbVoQTgxwzlZwpHonJ2TVctyLw8w365WGDZDibY92U_/exec";
 
 async function getProducts() {
   const response = await fetch("/data/products.json?v=20260612-retail-prices");
