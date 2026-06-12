@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/styles/catalog.css?v=20260611-catalog-layout">
     <link rel="stylesheet" href="/styles/cart.css?v=20260612-cart-width">
     <link rel="stylesheet" href="/styles/production.css">
-    <link rel="stylesheet" href="/styles/contacts.css?v=20260612-real-map">
+    <link rel="stylesheet" href="/styles/contacts.css?v=20260612-map-original">
     <link rel="stylesheet" href="/styles/social.css">
     <link rel="stylesheet" href="/styles/responsive.css?v=20260611-catalog-layout">
   </head>
@@ -164,11 +164,12 @@
             </div>
           </div>
           <div class="map-card" aria-label="CupGe location">
-            <iframe
-              title="CupGe Google Maps location"
-              src="https://www.google.com/maps?q=Cupge%20Fridon%20Khalvashi%205%20Batumi%20Georgia&output=embed"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-pin" aria-hidden="true"></div>
+            <div class="map-card-copy">
+              <strong>CupGe</strong>
+              <span data-i18n="contacts.addressCity">Batumi, Georgia</span>
+              <span data-i18n="contacts.addressStreet">5 Fridon Khalvashi Street</span>
+            </div>
             <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Cupge%20Fridon%20Khalvashi%205%20Batumi%20Georgia" target="_blank" rel="noopener" data-i18n="contacts.openMap">Open in Maps</a>
           </div>
           <div class="social-list" data-social-target="contacts"></div>
