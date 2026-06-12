@@ -62,7 +62,7 @@ async function initApp() {
       const result = await sendOrder({ customer: formData, items: getCart(), products: cachedProducts });
       clearCart();
       event.currentTarget.reset();
-      const message = t("form.sent").replace("{id}", result.leadId);
+      const message = getOrderSuccessMessage(result);
       showOrderSuccess(message);
     } catch (error) {
       console.error("CupGe order submit failed", error);
@@ -90,6 +90,20 @@ function showOrderSuccess(message) {
   modal.hidden = false;
   modal.classList.add("open");
   okButton.focus();
+}
+
+function getOrderSuccessMessage(result) {
+  if (result.leadId) {
+    return t("form.sent").replace("{id}", result.leadId);
+  }
+
+  const messages = {
+    ka: "განაცხადი წარმატებით გაიგზავნა. მალე დაგიკავშირდებით.",
+    ru: "Заявка отправлена. Мы свяжемся с вами в ближайшее время.",
+    en: "Request has been sent successfully. We will contact you shortly."
+  };
+
+  return messages[getCurrentLang()] || messages.en;
 }
 
 function closeOrderSuccess() {

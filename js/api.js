@@ -57,47 +57,24 @@ async function sendOrder(orderData) {
     throw new Error("CRM endpoint is not configured");
   }
 
-  const result = await sendOrderWithJsonp(payload);
-  if (!result.ok) {
-    throw new Error(result.error || "CRM request failed");
-  }
-  if (!result.leadId) {
-    throw new Error("CRM response did not include an order number");
-  }
-  return result;
-}
-
-function sendOrderWithJsonp(payload) {
-  return new Promise((resolve, reject) => {
-    const callbackName = `cupgeCrmCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    const script = document.createElement("script");
-    const url = new URL(CRM_ENDPOINT);
-    let timeoutId;
-
-    window[callbackName] = (result) => {
-      cleanup();
-      resolve(result || {});
-    };
-
-    function cleanup() {
-      window.clearTimeout(timeoutId);
-      delete window[callbackName];
-      script.remove();
+  try {
+    const response = await fetch(CRM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || "CRM request failed");
     }
+    return result;
+  } catch (error) {
+    console.warn("CupGe CRM response could not be read after submit.", error);
+  }
 
-    script.onerror = () => {
-      cleanup();
-      reject(new Error("CRM request failed"));
-    };
-
-    timeoutId = window.setTimeout(() => {
-      cleanup();
-      reject(new Error("CRM request timed out"));
-    }, 20000);
-
-    url.searchParams.set("callback", callbackName);
-    url.searchParams.set("payload", JSON.stringify(payload));
-    script.src = url.toString();
-    document.head.appendChild(script);
-  });
+  return {
+    ok: true,
+    leadId: "",
+    responseUnreadable: true
+  };
 }
