@@ -1,4 +1,5 @@
 const SPREADSHEET_ID = "1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks";
+const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks/edit";
 const SALES_EMAIL = "sales@cupge.com";
 const LEADS_SHEET = "Leads";
 const PRODUCTS_SHEET = "Products";
@@ -13,16 +14,23 @@ function doPost(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+function testSetup() {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  return `OK: ${spreadsheet.getName()}`;
+}
+
 function handleCupGeLead(payload) {
-  let leadId = String(Date.now());
+  let leadId = String(payload.clientLeadId || Date.now());
   let sheetError = "";
   let emailError = "";
   const createdAt = new Date();
 
   try {
-    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const spreadsheet = getSpreadsheet();
     ensureRequiredSheets(spreadsheet);
-    leadId = getNextLeadId(spreadsheet);
+    const nextLeadId = getNextLeadId(spreadsheet);
+    leadId = String(payload.clientLeadId || nextLeadId);
     appendLead(spreadsheet, leadId, createdAt, payload);
     appendProducts(spreadsheet, leadId, payload.items || []);
   } catch (error) {
@@ -47,6 +55,15 @@ function handleCupGeLead(payload) {
     sheetsSaved: !sheetError,
     sheetError
   };
+}
+
+function getSpreadsheet() {
+  try {
+    return SpreadsheetApp.openById(SPREADSHEET_ID);
+  } catch (idError) {
+    console.error("CupGe openById failed", idError && idError.stack ? idError.stack : String(idError));
+    return SpreadsheetApp.openByUrl(SPREADSHEET_URL);
+  }
 }
 
 function ensureRequiredSheets(spreadsheet) {
