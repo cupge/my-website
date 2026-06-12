@@ -145,6 +145,42 @@
   transform: translateY(0);
 }
 
+.order-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.order-modal.open {
+  display: grid;
+}
+
+.order-modal-panel {
+  width: min(520px, 100%);
+  padding: 28px;
+  border: 1px solid rgba(201, 162, 78, 0.42);
+  border-radius: 8px;
+  background: #171c20;
+  box-shadow: var(--shadow);
+}
+
+.order-modal-panel h2 {
+  margin: 0 0 22px;
+  color: var(--white);
+  font-family: Manrope, Inter, sans-serif;
+  font-size: 24px;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+.order-modal-panel .button {
+  min-width: 112px;
+}
+
 @media (max-width: 620px) {
   .cart-panel {
     width: 100%;
@@ -167,5 +203,13 @@
     left: 16px;
     right: 16px;
     top: 92px;
+  }
+
+  .order-modal-panel {
+    padding: 22px;
+  }
+
+  .order-modal-panel h2 {
+    font-size: 20px;
   }
 }

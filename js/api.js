@@ -16,7 +16,6 @@ function parsePrice(value) {
 }
 
 function buildCrmPayload(orderData) {
-  const clientLeadId = String(Date.now());
   const cartItems = orderData.items || [];
   const products = orderData.products || [];
   const crmItems = cartItems.map((item) => {
@@ -39,7 +38,6 @@ function buildCrmPayload(orderData) {
   return {
     source: "Website",
     type: "Sale",
-    clientLeadId,
     currency: "GEL",
     language: getCurrentLang(),
     pageUrl: window.location.href,
@@ -69,13 +67,12 @@ async function sendOrder(orderData) {
     if (!response.ok || !result.ok) {
       throw new Error(result.error || "CRM request failed");
     }
+    if (!result.leadId) {
+      throw new Error("CRM response did not include an order number");
+    }
     return result;
   } catch (error) {
-    console.warn("CupGe CRM response was not readable. Showing local order id.", error);
-    return {
-      ok: true,
-      leadId: payload.clientLeadId,
-      responsePending: true
-    };
+    console.warn("CupGe CRM request failed.", error);
+    throw error;
   }
 }

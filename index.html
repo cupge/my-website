@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/styles/main.css?v=20260603-hero">
     <link rel="stylesheet" href="/styles/header.css?v=20260612-cart-icon">
     <link rel="stylesheet" href="/styles/catalog.css?v=20260611-catalog-layout">
-    <link rel="stylesheet" href="/styles/cart.css?v=20260612-cart-width">
+    <link rel="stylesheet" href="/styles/cart.css?v=20260612-crm-modal">
     <link rel="stylesheet" href="/styles/production.css">
     <link rel="stylesheet" href="/styles/contacts.css?v=20260612-map-original">
     <link rel="stylesheet" href="/styles/social.css">
@@ -209,6 +209,14 @@
 
     <div class="site-toast" data-toast hidden></div>
 
+    <div class="order-modal" data-order-modal hidden>
+      <div class="order-modal-panel" role="dialog" aria-modal="true" aria-live="polite" aria-labelledby="order-modal-title">
+        <p class="eyebrow" data-i18n="nav.quote">Quote</p>
+        <h2 id="order-modal-title" data-order-modal-message></h2>
+        <button class="button button-primary" type="button" data-order-modal-ok data-i18n="form.ok">OK</button>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div>
         <a class="brand footer-brand" href="#top"><img src="/assets/images/logo/cupge-logo-cropped.png" alt="CupGe logo"></a>
@@ -222,13 +230,13 @@
       <div class="social-list" data-social-target="footer"></div>
     </footer>
 
-    <script src="/js/i18n.js?v=20260612-crm-final"></script>
-    <script src="/js/api.js?v=20260612-crm-final"></script>
+    <script src="/js/i18n.js?v=20260612-crm-modal"></script>
+    <script src="/js/api.js?v=20260612-crm-order-number"></script>
     <script src="/js/products.js?v=20260612-retail-prices"></script>
     <script src="/js/cart.js?v=20260612-cart-toast"></script>
     <script src="/js/catalog.js?v=20260612-retail-prices"></script>
     <script src="/js/video.js?v=20260612-retail-prices"></script>
     <script src="/js/social-links.js?v=20260612-retail-prices"></script>
-    <script src="/js/app.js?v=20260612-crm-final"></script>
+    <script src="/js/app.js?v=20260612-crm-order-number"></script>
   </body>
 </html>

@@ -4,14 +4,29 @@ const SALES_EMAIL = "sales@cupge.com";
 const LEADS_SHEET = "Leads";
 const PRODUCTS_SHEET = "Products";
 const SETTINGS_SHEET = "Settings";
-const DEFAULT_LAST_ORDER_NUMBER = 1024;
+const DEFAULT_LAST_ORDER_NUMBER = 1000;
 
 function doPost(e) {
-  const payload = JSON.parse(e.postData.contents || "{}");
-  const result = handleCupGeLead(payload);
-  return ContentService
-    .createTextOutput(JSON.stringify(result))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    const payload = JSON.parse((e && e.postData && e.postData.contents) || "{}");
+    const result = handleCupGeLead(payload);
+    return jsonResponse(result);
+  } catch (error) {
+    return jsonResponse({
+      ok: false,
+      error: errorToString(error)
+    });
+  }
+}
+
+function doGet() {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  return jsonResponse({
+    ok: true,
+    spreadsheet: spreadsheet.getName(),
+    nextLeadId: String(peekNextLeadId(spreadsheet))
+  });
 }
 
 function testSetup() {
@@ -21,39 +36,32 @@ function testSetup() {
 }
 
 function handleCupGeLead(payload) {
-  let leadId = String(payload.clientLeadId || Date.now());
-  let sheetError = "";
-  let emailError = "";
+  validatePayload(payload);
   const createdAt = new Date();
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  const leadId = getNextLeadId(spreadsheet);
 
   try {
-    const spreadsheet = getSpreadsheet();
-    ensureRequiredSheets(spreadsheet);
-    const nextLeadId = getNextLeadId(spreadsheet);
-    leadId = String(payload.clientLeadId || nextLeadId);
     appendLead(spreadsheet, leadId, createdAt, payload);
     appendProducts(spreadsheet, leadId, payload.items || []);
   } catch (error) {
-    sheetError = error && error.stack ? error.stack : String(error);
-    console.error("CupGe Sheets write failed", sheetError);
+    const sheetError = errorToString(error);
+    sendSalesEmail(leadId, createdAt, payload, sheetError);
+    throw new Error(`Google Sheets write failed: ${sheetError}`);
   }
 
   try {
-    sendSalesEmail(leadId, createdAt, payload, sheetError);
+    sendSalesEmail(leadId, createdAt, payload, "");
   } catch (error) {
-    emailError = error && error.stack ? error.stack : String(error);
-    console.error("CupGe email send failed", emailError);
-  }
-
-  if (emailError) {
-    throw new Error(emailError);
+    throw new Error(`Email send failed: ${errorToString(error)}`);
   }
 
   return {
     ok: true,
     leadId,
-    sheetsSaved: !sheetError,
-    sheetError
+    sheetsSaved: true,
+    emailed: true
   };
 }
 
@@ -74,7 +82,7 @@ function ensureRequiredSheets(spreadsheet) {
     "LeadID", "Товар", "Объем", "UnitType", "Количество", "Цена", "Сумма"
   ]);
   const settings = ensureSheet(spreadsheet, SETTINGS_SHEET, ["Key", "Value"]);
-  if (settings.getLastRow() < 2) {
+  if (!getSettingRow(settings, "LastOrderNumber")) {
     settings.appendRow(["LastOrderNumber", DEFAULT_LAST_ORDER_NUMBER]);
   }
 }
@@ -92,19 +100,31 @@ function getNextLeadId(spreadsheet) {
   lock.waitLock(10000);
   try {
     const settings = spreadsheet.getSheetByName(SETTINGS_SHEET);
-    const values = settings.getDataRange().getValues();
-    let rowIndex = values.findIndex((row) => row[0] === "LastOrderNumber");
-    if (rowIndex === -1) {
+    let rowIndex = getSettingRow(settings, "LastOrderNumber");
+    if (!rowIndex) {
       settings.appendRow(["LastOrderNumber", DEFAULT_LAST_ORDER_NUMBER]);
-      rowIndex = settings.getLastRow() - 1;
+      rowIndex = settings.getLastRow();
     }
-    const current = Number(settings.getRange(rowIndex + 1, 2).getValue()) || DEFAULT_LAST_ORDER_NUMBER;
+    const current = Number(settings.getRange(rowIndex, 2).getValue()) || DEFAULT_LAST_ORDER_NUMBER;
     const next = current + 1;
-    settings.getRange(rowIndex + 1, 2).setValue(next);
+    settings.getRange(rowIndex, 2).setValue(next);
     return String(next);
   } finally {
     lock.releaseLock();
   }
+}
+
+function peekNextLeadId(spreadsheet) {
+  const settings = spreadsheet.getSheetByName(SETTINGS_SHEET);
+  const rowIndex = getSettingRow(settings, "LastOrderNumber");
+  const current = rowIndex ? Number(settings.getRange(rowIndex, 2).getValue()) : DEFAULT_LAST_ORDER_NUMBER;
+  return (current || DEFAULT_LAST_ORDER_NUMBER) + 1;
+}
+
+function getSettingRow(settings, key) {
+  const values = settings.getDataRange().getValues();
+  const index = values.findIndex((row) => row[0] === key);
+  return index === -1 ? 0 : index + 1;
 }
 
 function appendLead(spreadsheet, leadId, createdAt, payload) {
@@ -136,8 +156,9 @@ function appendProducts(spreadsheet, leadId, items) {
     numberValue(item.price),
     numberValue(item.lineTotal)
   ]);
-  spreadsheet.getSheetByName(PRODUCTS_SHEET)
-    .getRange(spreadsheet.getSheetByName(PRODUCTS_SHEET).getLastRow() + 1, 1, rows.length, rows[0].length)
+  const productsSheet = spreadsheet.getSheetByName(PRODUCTS_SHEET);
+  productsSheet
+    .getRange(productsSheet.getLastRow() + 1, 1, rows.length, rows[0].length)
     .setValues(rows);
 }
 
@@ -172,6 +193,29 @@ function sendSalesEmail(leadId, createdAt, payload, sheetError) {
   });
 }
 
+function validatePayload(payload) {
+  if (!payload || typeof payload !== "object") {
+    throw new Error("Missing request payload");
+  }
+  if (!Array.isArray(payload.items) || !payload.items.length) {
+    throw new Error("Order has no products");
+  }
+  const customer = payload.customer || {};
+  if (!customer.name && !customer.phone && !customer.email) {
+    throw new Error("Missing customer contact details");
+  }
+}
+
 function numberValue(value) {
   return Number(String(value || 0).replace(",", ".")) || 0;
+}
+
+function errorToString(error) {
+  return error && error.stack ? error.stack : String(error);
+}
+
+function jsonResponse(data) {
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
 }

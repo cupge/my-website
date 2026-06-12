@@ -3,7 +3,7 @@
 Spreadsheet ID:
 
 ```text
-1EspRM9cXv2uwmoRiWXcOQIINE3pJI008sVYuBC_FEks
+1EspRM9cXv2uwmoRiWXcOQIINE3pJl008sVYuBC_FEks
 ```
 
 ## Sheets
@@ -33,7 +33,7 @@ Created automatically by Apps Script if missing.
 
 ```text
 Key | Value
-LastOrderNumber | 1024
+LastOrderNumber | 1000
 ```
 
 ## Deployment
