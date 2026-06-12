@@ -46,6 +46,11 @@ function importSalesEmails() {
   threads.forEach((thread) => {
     const messages = thread.getMessages();
     const message = messages[messages.length - 1];
+    if (isWebsiteNotificationEmail(message)) {
+      thread.addLabel(importedLabel);
+      return;
+    }
+
     const from = message.getFrom();
     const body = getPlainMessageBody(message).slice(0, 1200);
     const leadId = getNextLeadId(spreadsheet);
@@ -81,6 +86,18 @@ function setupSalesEmailImportTrigger() {
     .create();
 
   return "OK: sales email import trigger runs every 10 minutes";
+}
+
+function isWebsiteNotificationEmail(message) {
+  const subject = String(message.getSubject() || "");
+  const from = String(message.getFrom() || "");
+  const body = getPlainMessageBody(message).slice(0, 500);
+
+  return (
+    /^CupGe website (order|inquiry) #\d+/i.test(subject) ||
+    /New CupGe website (order|inquiry) #\d+/i.test(body) ||
+    /ltd\.cup\.ge@gmail\.com/i.test(from)
+  );
 }
 
 function handleCupGeLead(payload) {
