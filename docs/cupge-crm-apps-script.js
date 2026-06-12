@@ -1,10 +1,11 @@
 const SPREADSHEET_ID = "1EspRM9cXv2uwmoRiWXcOQIINE3pJl008sVYuBC_FEks";
 const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1EspRM9cXv2uwmoRiWXcOQIINE3pJl008sVYuBC_FEks/edit";
 const SALES_EMAIL = "sales@cupge.com";
+const INFO_EMAIL = "info@cupge.com";
 const LEADS_SHEET = "Leads";
 const PRODUCTS_SHEET = "Products";
 const SETTINGS_SHEET = "Settings";
-const SALES_GMAIL_LABEL = "SALES";
+const CRM_GMAIL_LABELS = ["SALES", "INFO"];
 const DEFAULT_LAST_ORDER_NUMBER = 1000;
 
 function doGet(e) {
@@ -36,43 +37,66 @@ function testSetup() {
   return `OK: ${spreadsheet.getName()}`;
 }
 
+function testNotificationEmail() {
+  MailApp.sendEmail({
+    to: SALES_EMAIL,
+    subject: "CupGe CRM sale notification test",
+    body: `OK: Apps Script can send website sale notifications to ${SALES_EMAIL}`
+  });
+  MailApp.sendEmail({
+    to: INFO_EMAIL,
+    subject: "CupGe CRM inquiry notification test",
+    body: `OK: Apps Script can send website inquiry notifications to ${INFO_EMAIL}`
+  });
+
+  return `OK: notification emails sent to ${SALES_EMAIL} and ${INFO_EMAIL}`;
+}
+
 function importSalesEmails() {
   const spreadsheet = getSpreadsheet();
   ensureRequiredSheets(spreadsheet);
-  const threads = GmailApp.search(`label:${SALES_GMAIL_LABEL} newer_than:30d -label:CRM_IMPORTED`, 0, 20);
   const importedLabel = getOrCreateGmailLabel("CRM_IMPORTED");
+  const seenThreadIds = {};
   let importedCount = 0;
 
-  threads.forEach((thread) => {
-    const messages = thread.getMessages();
-    const message = messages[messages.length - 1];
-    if (isWebsiteNotificationEmail(message)) {
+  CRM_GMAIL_LABELS.forEach((labelName) => {
+    const threads = GmailApp.search(`label:${labelName} newer_than:30d -label:CRM_IMPORTED`, 0, 20);
+
+    threads.forEach((thread) => {
+      const threadId = thread.getId();
+      if (seenThreadIds[threadId]) return;
+      seenThreadIds[threadId] = true;
+
+      const messages = thread.getMessages();
+      const message = messages[messages.length - 1];
+      if (isWebsiteNotificationEmail(message)) {
+        thread.addLabel(importedLabel);
+        return;
+      }
+
+      const from = message.getFrom();
+      const body = getPlainMessageBody(message).slice(0, 1200);
+      const leadId = getNextLeadId(spreadsheet);
+      const payload = {
+        source: "Email",
+        type: normalizeLeadType(labelName),
+        total: 0,
+        currency: "GEL",
+        customer: {
+          name: parseEmailName(from),
+          email: parseEmailAddress(from),
+          message: `Subject: ${message.getSubject()}\n\n${body}`
+        },
+        items: []
+      };
+
+      appendLead(spreadsheet, leadId, message.getDate(), payload);
       thread.addLabel(importedLabel);
-      return;
-    }
-
-    const from = message.getFrom();
-    const body = getPlainMessageBody(message).slice(0, 1200);
-    const leadId = getNextLeadId(spreadsheet);
-    const payload = {
-      source: "Email",
-      type: "Inquiry",
-      total: 0,
-      currency: "GEL",
-      customer: {
-        name: parseEmailName(from),
-        email: parseEmailAddress(from),
-        message: `Subject: ${message.getSubject()}\n\n${body}`
-      },
-      items: []
-    };
-
-    appendLead(spreadsheet, leadId, message.getDate(), payload);
-    thread.addLabel(importedLabel);
-    importedCount += 1;
+      importedCount += 1;
+    });
   });
 
-  return `Imported email inquiries: ${importedCount}`;
+  return `Imported emails: ${importedCount}`;
 }
 
 function setupSalesEmailImportTrigger() {
@@ -85,7 +109,40 @@ function setupSalesEmailImportTrigger() {
     .everyMinutes(10)
     .create();
 
-  return "OK: sales email import trigger runs every 10 minutes";
+  return "OK: sales/info email import trigger runs every 10 minutes";
+}
+
+function fixExistingLeadSourceTypes() {
+  const spreadsheet = getSpreadsheet();
+  ensureRequiredSheets(spreadsheet);
+  const sheet = spreadsheet.getSheetByName(LEADS_SHEET);
+  const lastRow = sheet.getLastRow();
+  if (lastRow < 2) return "OK: no leads to update";
+
+  const range = sheet.getRange(2, 3, lastRow - 1, 2);
+  const values = range.getValues();
+  let updatedCount = 0;
+
+  const updatedValues = values.map((row) => {
+    const source = String(row[0] || "").trim();
+    const type = String(row[1] || "").trim();
+    let nextSource = source;
+    let nextType = type;
+
+    const emailSourceMatch = source.match(/^Email\s*\/\s*(Sales|Info)$/i);
+    if (emailSourceMatch) {
+      nextSource = "Email";
+      nextType = normalizeLeadType(emailSourceMatch[1]);
+    } else {
+      nextType = normalizeLeadType(type);
+    }
+
+    if (nextSource !== source || nextType !== type) updatedCount += 1;
+    return [nextSource, nextType];
+  });
+
+  range.setValues(updatedValues);
+  return `OK: updated ${updatedCount} lead rows`;
 }
 
 function isWebsiteNotificationEmail(message) {
@@ -194,7 +251,7 @@ function appendLead(spreadsheet, leadId, createdAt, payload) {
     leadId,
     createdAt,
     payload.source || "Website",
-    payload.type || "Sale",
+    normalizeLeadType(payload.type || "Sales"),
     customer.name || "",
     customer.phone || "",
     customer.company || "",
@@ -226,8 +283,9 @@ function appendProducts(spreadsheet, leadId, items) {
 function sendSalesEmail(leadId, createdAt, payload, sheetError) {
   const customer = payload.customer || {};
   const items = payload.items || [];
-  const leadType = payload.type || (items.length ? "Sale" : "Inquiry");
-  const emailTitle = leadType === "Sale" ? "order" : "inquiry";
+  const leadType = normalizeLeadType(payload.type || (items.length ? "Sales" : "Info"));
+  const emailTitle = leadType === "Sales" ? "order" : "inquiry";
+  const recipient = leadType === "Sales" ? SALES_EMAIL : INFO_EMAIL;
   const lines = items.map((item) => (
     `${item.productName || item.name || item.productId || ""} | ${item.volume || ""} | ${item.unitType || ""} | qty: ${item.quantity || 0} | price: ${item.price || item.unitPrice || 0} | sum: ${item.lineTotal || item.total || 0}`
   )).join("\n");
@@ -250,7 +308,7 @@ function sendSalesEmail(leadId, createdAt, payload, sheetError) {
     sheetError ? `Google Sheets write error:\n${sheetError}` : "Google Sheets write: OK"
   ].join("\n");
   MailApp.sendEmail({
-    to: SALES_EMAIL,
+    to: recipient,
     subject: `CupGe website ${emailTitle} #${leadId}`,
     body
   });
@@ -289,6 +347,13 @@ function parseEmailAddress(from) {
 
 function numberValue(value) {
   return Number(String(value || 0).replace(",", ".")) || 0;
+}
+
+function normalizeLeadType(value) {
+  const text = String(value || "").trim().toLowerCase();
+  if (text === "sale" || text === "sales") return "Sales";
+  if (text === "info" || text === "inquiry") return "Info";
+  return value || "Sales";
 }
 
 function errorToString(error) {

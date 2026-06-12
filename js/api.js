@@ -37,7 +37,7 @@ function buildCrmPayload(orderData) {
   const total = crmItems.reduce((sum, item) => sum + item.lineTotal, 0);
   return {
     source: "Website",
-    type: crmItems.length ? "Sale" : "Inquiry",
+    type: crmItems.length ? "Sales" : "Info",
     currency: "GEL",
     language: getCurrentLang(),
     pageUrl: window.location.href,
