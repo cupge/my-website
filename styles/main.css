@@ -103,11 +103,22 @@ img {
   border-color: rgba(201, 162, 78, 0.8);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.78;
+}
+
 .button-primary {
   background: linear-gradient(135deg, var(--gold), #97752c);
   border-color: transparent;
   color: #15120a;
   font-weight: 800;
+}
+
+.button-primary:disabled {
+  background: linear-gradient(135deg, #8b733d, #5d4a25);
+  color: rgba(245, 245, 245, 0.78);
 }
 
 .button-secondary {

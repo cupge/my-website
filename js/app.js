@@ -58,7 +58,13 @@ async function initApp() {
   document.querySelector("[data-order-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    if (form.dataset.submitting === "true") return;
+
+    const submitButton = form.querySelector("[type='submit']");
     const formData = Object.fromEntries(new FormData(form).entries());
+    form.dataset.submitting = "true";
+    if (submitButton) submitButton.disabled = true;
+
     try {
       const result = await sendOrder({ customer: formData, items: getCart(), products: cachedProducts });
       clearCart();
@@ -73,6 +79,9 @@ async function initApp() {
       }
       form.reset();
       showOrderSuccess(getOrderSuccessMessage({}));
+    } finally {
+      delete form.dataset.submitting;
+      if (submitButton) submitButton.disabled = false;
     }
   });
 
