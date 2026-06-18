@@ -74,8 +74,28 @@
 
   .hero-media,
   .video-preview,
+  .production-video-track,
   .production-video {
     min-height: 280px;
+  }
+
+  .video-arrow {
+    width: 38px;
+    height: 48px;
+    font-size: 32px;
+  }
+
+  .video-arrow-prev {
+    left: 10px;
+  }
+
+  .video-arrow-next {
+    right: 10px;
+  }
+
+  .video-counter {
+    right: 10px;
+    top: 10px;
   }
 
   .section-heading,

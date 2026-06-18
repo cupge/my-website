@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="/styles/header.css?v=20260612-cart-icon">
     <link rel="stylesheet" href="/styles/catalog.css?v=20260611-catalog-layout">
     <link rel="stylesheet" href="/styles/cart.css?v=20260612-crm-modal">
-    <link rel="stylesheet" href="/styles/production.css">
+    <link rel="stylesheet" href="/styles/production.css?v=20260619-video-carousel">
     <link rel="stylesheet" href="/styles/contacts.css?v=20260612-map-original">
     <link rel="stylesheet" href="/styles/social.css">
-    <link rel="stylesheet" href="/styles/responsive.css?v=20260611-catalog-layout">
+    <link rel="stylesheet" href="/styles/responsive.css?v=20260619-video-carousel">
   </head>
   <body>
     <header class="site-header">
@@ -144,11 +144,32 @@
           </ul>
           <button class="button button-primary" type="button" data-youtube-open data-i18n="production.youtube">Open YouTube Channel</button>
         </div>
-        <div class="video-preview" data-youtube-preview>
-          <video class="production-video" controls preload="metadata" poster="/assets/images/production/factory-process.png">
-            <source src="/assets/videos/production-video.mp4.mp4" type="video/mp4">
-            <span data-i18n="production.preview">Production video preview</span>
-          </video>
+        <div class="video-preview" data-youtube-preview data-video-carousel>
+          <button class="video-arrow video-arrow-prev" type="button" data-video-prev aria-label="Previous video">&#8249;</button>
+          <div class="production-video-track">
+            <video class="production-video active" data-production-video controls preload="metadata" poster="/assets/images/production/factory-process.png">
+              <source src="/assets/videos/production-video.mp4.mp4" type="video/mp4">
+              <span data-i18n="production.preview">Production video preview</span>
+            </video>
+            <video class="production-video" data-production-video controls preload="metadata" poster="/assets/images/production/factory-process.png" hidden>
+              <source src="/assets/videos/print-black-gold-city.mp4" type="video/mp4">
+              <span data-i18n="production.preview">Production video preview</span>
+            </video>
+            <video class="production-video" data-production-video controls preload="metadata" poster="/assets/images/production/factory-process.png" hidden>
+              <source src="/assets/videos/print-bordo.mp4" type="video/mp4">
+              <span data-i18n="production.preview">Production video preview</span>
+            </video>
+            <video class="production-video" data-production-video controls preload="metadata" poster="/assets/images/production/factory-process.png" hidden>
+              <source src="/assets/videos/print-white-city.mp4" type="video/mp4">
+              <span data-i18n="production.preview">Production video preview</span>
+            </video>
+            <video class="production-video" data-production-video controls preload="metadata" poster="/assets/images/production/factory-process.png" hidden>
+              <source src="/assets/videos/work-process.mp4" type="video/mp4">
+              <span data-i18n="production.preview">Production video preview</span>
+            </video>
+          </div>
+          <button class="video-arrow video-arrow-next" type="button" data-video-next aria-label="Next video">&#8250;</button>
+          <div class="video-counter" aria-live="polite"><span data-video-current>1</span>/<span data-video-total>5</span></div>
         </div>
       </section>
 
@@ -235,7 +256,7 @@
     <script src="/js/products.js?v=20260612-retail-prices"></script>
     <script src="/js/cart.js?v=20260612-cart-toast"></script>
     <script src="/js/catalog.js?v=20260612-retail-prices"></script>
-    <script src="/js/video.js?v=20260612-retail-prices"></script>
+    <script src="/js/video.js?v=20260619-video-carousel"></script>
     <script src="/js/social-links.js?v=20260612-retail-prices"></script>
     <script src="/js/app.js?v=20260616-submit-lock"></script>
   </body>
