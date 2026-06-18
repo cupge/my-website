@@ -13,7 +13,7 @@
 }
 
 .production-copy h2 {
-  margin: 0 0 16px;
+  margin: 0 0 26px;
   font-size: clamp(30px, 5vw, 54px);
   line-height: 1;
 }
