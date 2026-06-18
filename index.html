@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="/styles/header.css?v=20260612-cart-icon">
     <link rel="stylesheet" href="/styles/catalog.css?v=20260611-catalog-layout">
     <link rel="stylesheet" href="/styles/cart.css?v=20260612-crm-modal">
-    <link rel="stylesheet" href="/styles/production.css?v=20260619-video-fit">
+    <link rel="stylesheet" href="/styles/production.css?v=20260619-production-actions">
     <link rel="stylesheet" href="/styles/contacts.css?v=20260612-map-original">
     <link rel="stylesheet" href="/styles/social.css">
-    <link rel="stylesheet" href="/styles/responsive.css?v=20260619-video-carousel">
+    <link rel="stylesheet" href="/styles/responsive.css?v=20260619-production-actions">
   </head>
   <body>
     <header class="site-header">
@@ -137,14 +137,26 @@
           <p class="eyebrow" data-i18n="production.eyebrow">CupGe Production</p>
           <h2 data-i18n="production.title">How We Manufacture</h2>
           <p data-i18n="production.text">Factory visuals, process notes and video previews help buyers verify that CupGe is a real manufacturing partner.</p>
-          <ul class="check-list">
-            <li data-i18n="production.item1">Paper cup forming and packing process</li>
-            <li data-i18n="production.item2">Quality control before carton shipment</li>
-            <li data-i18n="production.item3">Future YouTube channel integration</li>
-          </ul>
-          <button class="button button-primary" type="button" data-youtube-open data-i18n="production.youtube">Open YouTube Channel</button>
+          <div class="production-actions" aria-label="Production media">
+            <button class="production-media-button" type="button" data-production-mode="photo" data-i18n="production.photos">Photos</button>
+            <button class="production-media-button active" type="button" data-production-mode="video" data-i18n="production.videos">Videos</button>
+            <button class="production-media-button" type="button" data-youtube-open data-i18n="production.youtube">Open YouTube Channel</button>
+          </div>
         </div>
-        <div class="video-preview" data-youtube-preview data-video-carousel>
+        <div class="production-photo-panel" data-production-photo hidden>
+          <button class="video-arrow video-arrow-prev" type="button" data-photo-prev aria-label="Previous photo">&#8249;</button>
+          <div class="production-photo-track">
+            <img class="production-photo active" data-production-photo-item src="/assets/images/production-gallery/photo-1.jpg" alt="CupGe production photo">
+            <img class="production-photo" data-production-photo-item src="/assets/images/production-gallery/photo-2.jpg" alt="CupGe production photo" hidden>
+            <img class="production-photo" data-production-photo-item src="/assets/images/production-gallery/photo-3.jpg" alt="CupGe production photo" hidden>
+            <img class="production-photo" data-production-photo-item src="/assets/images/production-gallery/photo-4.jpg" alt="CupGe production photo" hidden>
+            <img class="production-photo" data-production-photo-item src="/assets/images/production-gallery/photo-5.jpg" alt="CupGe production photo" hidden>
+            <img class="production-photo" data-production-photo-item src="/assets/images/production-gallery/photo-6.jpg" alt="CupGe production photo" hidden>
+          </div>
+          <button class="video-arrow video-arrow-next" type="button" data-photo-next aria-label="Next photo">&#8250;</button>
+          <div class="video-counter" aria-live="polite"><span data-photo-current>1</span>/<span data-photo-total>6</span></div>
+        </div>
+        <div class="video-preview" data-youtube-preview data-video-panel data-video-carousel>
           <button class="video-arrow video-arrow-prev" type="button" data-video-prev aria-label="Previous video">&#8249;</button>
           <div class="production-video-track">
             <video class="production-video active" data-production-video controls preload="metadata">
@@ -251,12 +263,12 @@
       <div class="social-list" data-social-target="footer"></div>
     </footer>
 
-    <script src="/js/i18n.js?v=20260612-crm-modal-i18n"></script>
+    <script src="/js/i18n.js?v=20260619-production-actions"></script>
     <script src="/js/api.js?v=20260612-crm-source-type-v1"></script>
     <script src="/js/products.js?v=20260612-retail-prices"></script>
     <script src="/js/cart.js?v=20260612-cart-toast"></script>
     <script src="/js/catalog.js?v=20260612-retail-prices"></script>
-    <script src="/js/video.js?v=20260619-video-fit"></script>
+    <script src="/js/video.js?v=20260619-production-actions"></script>
     <script src="/js/social-links.js?v=20260612-retail-prices"></script>
     <script src="/js/app.js?v=20260616-submit-lock"></script>
   </body>

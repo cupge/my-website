@@ -74,7 +74,10 @@
 
   .hero-media,
   .video-preview,
+  .production-photo-panel,
   .production-video-track,
+  .production-photo-track,
+  .production-photo,
   .production-video {
     min-height: 280px;
   }
