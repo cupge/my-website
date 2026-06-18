@@ -67,6 +67,7 @@ function initProductionPhotoGallery() {
   const photos = Array.from(panel.querySelectorAll("[data-production-photo-item]"));
   const prevButton = panel.querySelector("[data-photo-prev]");
   const nextButton = panel.querySelector("[data-photo-next]");
+  const fullscreenButton = panel.querySelector("[data-photo-fullscreen]");
   const currentNode = panel.querySelector("[data-photo-current]");
   const totalNode = panel.querySelector("[data-photo-total]");
   if (!photos.length || !prevButton || !nextButton) return;
@@ -101,6 +102,13 @@ function initProductionPhotoGallery() {
 
   prevButton.addEventListener("click", () => showPhoto(activeIndex - 1));
   nextButton.addEventListener("click", () => showPhoto(activeIndex + 1));
+  fullscreenButton?.addEventListener("click", () => {
+    if (panel.requestFullscreen) {
+      panel.requestFullscreen();
+      return;
+    }
+    if (panel.webkitRequestFullscreen) panel.webkitRequestFullscreen();
+  });
   showPhoto(activeIndex);
 }
 

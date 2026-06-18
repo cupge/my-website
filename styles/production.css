@@ -29,14 +29,16 @@
   align-items: flex-start;
   gap: 10px;
   margin-top: 28px;
+  width: 230px;
+  max-width: 100%;
 }
 
 .production-media-button {
+  width: 100%;
   min-height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 210px;
   padding: 0 16px;
   border: 1px solid rgba(245, 245, 245, 0.18);
   border-radius: 7px;
@@ -44,6 +46,7 @@
   color: var(--white);
   cursor: pointer;
   font-weight: 900;
+  white-space: nowrap;
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -122,6 +125,48 @@
   background: #000;
 }
 
+.production-photo-panel:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+}
+
+.production-photo-panel:fullscreen .production-photo-track,
+.production-photo-panel:fullscreen .production-photo {
+  width: 100vw;
+  height: 100vh;
+  min-height: 0;
+}
+
+.production-photo-panel:fullscreen .production-photo {
+  object-fit: contain;
+}
+
+.production-photo-panel:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+}
+
+.production-photo-panel:-webkit-full-screen .production-photo-track,
+.production-photo-panel:-webkit-full-screen .production-photo {
+  width: 100vw;
+  height: 100vh;
+  min-height: 0;
+}
+
+.production-photo-panel:-webkit-full-screen .production-photo {
+  object-fit: contain;
+}
+
 .video-arrow {
   width: 46px;
   height: 58px;
@@ -154,6 +199,39 @@
 
 .video-arrow-next {
   right: 16px;
+}
+
+.photo-fullscreen-button {
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(245, 245, 245, 0.22);
+  border-radius: 7px;
+  background: rgba(17, 24, 39, 0.72);
+  color: var(--white);
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.photo-fullscreen-button:hover {
+  border-color: rgba(201, 162, 78, 0.8);
+  background: rgba(201, 162, 78, 0.92);
+  color: #15120a;
+}
+
+.photo-fullscreen-button svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .video-counter {
