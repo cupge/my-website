@@ -24,6 +24,7 @@ function renderYoutubePreview() {
       video.classList.toggle("active", isActive);
       if (!isActive) video.pause();
     });
+    if (videos[activeIndex].readyState === 0) videos[activeIndex].load();
     if (currentNode) currentNode.textContent = String(activeIndex + 1);
   };
 
