@@ -10,7 +10,8 @@ async function renderSocialLinks() {
   };
   const html = Object.entries(links).map(([platform, url]) => {
     const href = url || "#contacts";
-    return `<a class="social-link" href="${href}" aria-label="${platform}" title="${platform}"><img src="${icons[platform]}" alt=""></a>`;
+    const externalAttrs = url ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a class="social-link" href="${href}"${externalAttrs} aria-label="${platform}" title="${platform}"><img src="${icons[platform]}" alt=""></a>`;
   }).join("");
   document.querySelectorAll(".social-list").forEach((node) => {
     node.innerHTML = html;
