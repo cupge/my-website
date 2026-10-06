@@ -9,6 +9,10 @@ function getCartId(product, saleType) {
   return saleType === "retail" ? `retail-${product.id}` : product.id;
 }
 
+function getProductImageAlt(product) {
+  return `CUPGE ${product.group} paper cup ${product.volume} ml`;
+}
+
 function renderSpecs(product, saleType) {
   const baseSpecs = `
     <div><dt>${t("spec.dimensions")}</dt><dd>${product.dimensions}</dd></div>
@@ -43,7 +47,7 @@ function renderCatalog(products) {
     return `
       <article class="product-card" style="--cup-color: ${color}; --cup-color-dark: ${darkColor}; --cup-logo: ${logoColor}">
         <div class="product-visual" aria-hidden="true">
-          <img src="${cupImages[product.group]}" alt="">
+          <img src="${cupImages[product.group]}" alt="${getProductImageAlt(product)}" loading="lazy">
         </div>
         <div class="product-content">
           <h3>${getProductName(product)}</h3>

@@ -8,10 +8,16 @@ async function renderSocialLinks() {
     tiktok: "/assets/images/icons/tiktok.svg",
     linkedin: "/assets/images/icons/linkedin.svg"
   };
+  const labels = {
+    instagram: "CUPGE on Instagram",
+    facebook: "CUPGE on Facebook",
+    linkedin: "CUPGE representative on LinkedIn"
+  };
   const html = Object.entries(links).map(([platform, url]) => {
     const href = url || "#contacts";
+    const label = labels[platform] || platform;
     const externalAttrs = url ? ' target="_blank" rel="noopener noreferrer"' : "";
-    return `<a class="social-link" href="${href}"${externalAttrs} aria-label="${platform}" title="${platform}"><img src="${icons[platform]}" alt=""></a>`;
+    return `<a class="social-link" href="${href}"${externalAttrs} aria-label="${label}" title="${label}"><img src="${icons[platform]}" alt=""></a>`;
   }).join("");
   document.querySelectorAll(".social-list").forEach((node) => {
     node.innerHTML = html;
